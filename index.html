@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html id="html-root" lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Veloza | Enterprise AI Business, Feasibility & Automation OS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Cairo', 'Inter', sans-serif; background-color: #060911; color: #f1f5f9; scroll-behavior: smooth; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #090d16; }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 9999px; }
+  </style>
+</head>
+<body class="min-h-screen bg-[#060911] text-slate-100 selection:bg-cyan-500/30 overflow-x-hidden pb-20">
+
+  <!-- 1. بوابة الحماية والترحيب الاحترافية عند دخول الموقع (Enterprise Security & Brand Gate) -->
+  <div id="security-splash-gate" class="fixed inset-0 z-[100] bg-[#04070E]/95 backdrop-blur-2xl flex flex-col items-center justify-center p-6 select-none transition-opacity duration-500">
+    <div class="w-full max-w-md rounded-3xl border border-cyan-500/40 bg-[#090D16] p-8 text-center space-y-6 shadow-2xl relative overflow-hidden">
+      <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-72 h-36 bg-gradient-to-r from-cyan-500/25 via-blue-500/20 to-violet-600/25 blur-3xl rounded-full pointer-events-none"></div>
+
+      <!-- زر تبديل اللغة داخل بوابة الدخول -->
+      <div class="flex justify-end">
+        <button onclick="toggleSiteLanguage()" class="px-3 py-1 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-bold text-cyan-300 transition" data-i18n="langSwitchBtn">
+          🇬🇧 English
+        </button>
+      </div>
+
+      <!-- شعار Veloza الكبير -->
+      <div class="flex justify-center" dir="ltr">
+        <div class="inline-flex items-center gap-3.5">
+          <div class="relative flex items-center justify-center">
+            <div class="absolute -inset-1.5 rounded-full bg-gradient-to-r from-cyan-500 via-blue-500 to-violet-600 opacity-50 blur-md animate-pulse"></div>
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="relative z-10">
+              <defs>
+                <linearGradient id="gateMainGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#06B6D4" />
+                  <stop offset="50%" stop-color="#3B82F6" />
+                  <stop offset="100%" stop-color="#8B5CF6" />
+                </linearGradient>
+                <linearGradient id="gateAccentGrad" x1="100%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#22D3EE" />
+                  <stop offset="100%" stop-color="#6366F1" />
+                </linearGradient>
+              </defs>
+              <path d="M32 4L56.2487 18V46L32 60L7.75129 46V18L32 4Z" stroke="url(#gateMainGrad)" stroke-width="2.2" fill="#090D16" />
+              <path d="M16 20L32 50L36.5 41.5L24.5 20H16Z" fill="url(#gateMainGrad)" />
+              <path d="M48 20L38 38.5L33.5 30L40 20H48Z" fill="url(#gateAccentGrad)" />
+              <circle cx="32" cy="22" r="3.5" fill="#22D3EE" />
+              <path d="M32 25.5V34" stroke="#22D3EE" stroke-width="2" stroke-linecap="round" />
+            </svg>
+          </div>
+          <div class="flex flex-col text-left">
+            <div class="flex items-center">
+              <span class="font-black tracking-tighter text-white text-4xl">VELO</span>
+              <span class="font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-violet-500 text-4xl">ZA</span>
+            </div>
+            <span class="text-[10px] uppercase tracking-[0.28em] text-cyan-400 font-bold">Enterprise OS</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-bold" data-i18n="gateBadge">
+          🛡️ بوابة الحماية والموثوقية السيادية • Veloza Security Shield
+        </div>
+        <p class="text-xs text-slate-300 font-semibold" data-i18n="gateStatus">
+          تم التحقق من التشفير البنكي (256-Bit SSL) وحماية المشتري عبر PayPal 100%
+        </p>
+      </div>
+
+      <div class="w-full h-2 rounded-full bg-slate-900 overflow-hidden border border-slate-800">
+        <div class="h-full bg-gradient-to-r from-cyan-400 via-blue-500 to-emerald-400" style="width: 100%;"></div>
+      </div>
+
+      <div class="grid grid-cols-3 gap-2 text-[11px] text-slate-300 font-semibold" dir="ltr">
+        <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800">🔒 SSL 256-Bit</div>
+        <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-emerald-400">✅ PayPal Verified</div>
+        <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-cyan-300">🛡️ Anti-Bot Shield</div>
+      </div>
+
+      <button onclick="closeSecurityGate()" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 hover:from-cyan-400 hover:to-violet-500 text-white font-black text-xs sm:text-sm shadow-xl transition" data-i18n="gateEnterBtn">
+        الدخول الآمن إلى منصة Veloza ←
+      </button>
+    </div>
+  </div>
+
+  <!-- نافذة تفاصيل شارات الثقة والضمان (Trust Modal) -->
+  <div id="trust-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="w-full max-w-md rounded-3xl bg-[#0B0F19] border border-emerald-500/40 p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between">
+        <span id="trust-modal-badge" class="px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-bold"></span>
+        <button onclick="closeTrustModal()" class="text-slate-400 hover:text-white text-xs font-bold px-3 py-1 rounded-lg bg-slate-900">✕</button>
+      </div>
+      <h3 id="trust-modal-title" class="text-lg font-black text-white"></h3>
+      <p id="trust-modal-desc" class="text-xs sm:text-sm text-slate-300 leading-relaxed"></p>
+      <div class="pt-2 text-xs text-emerald-400 font-bold" data-i18n="trustModalFooter">✅ معتمد وموثق رسمياً في نظام Veloza Enterprise OS</div>
+    </div>
+  </div>
+
+  <!-- نافذة بوابة المالك السرية المحمية بكلمة مرور -->
+  <div id="owner-secret-modal" class="hidden fixed inset-0 z-50 bg-black/85 backdrop-blur-xl flex items-center justify-center p-4 overflow-y-auto">
+    <div class="w-full max-w-4xl rounded-3xl bg-[#090D16] border border-amber-400/40 p-6 sm:p-8 space-y-6 shadow-2xl my-8">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+        <div class="flex items-center gap-3">
+          <span class="text-2xl">👑</span>
+          <div>
+            <h3 class="text-lg font-black text-white" data-i18n="ownerVaultTitle">بوابة الإدارة الخاصة بالمالك (Owner Private Vault)</h3>
+            <p class="text-xs text-slate-400" data-i18n="ownerVaultSub">هذه البوابة معزولة تماماً عن واجهة العملاء ومحمية برمز سري</p>
+          </div>
+        </div>
+        <button onclick="closeOwnerVault()" class="px-3 py-1.5 rounded-xl bg-slate-900 text-slate-300 hover:text-white text-xs font-bold">✕</button>
+      </div>
+
+      <div id="owner-pin-screen" class="max-w-sm mx-auto py-8 text-center space-y-4">
+        <div class="text-xs text-slate-300" data-i18n="ownerPinPrompt">أدخل الرمز السري للمالك (2026) لفتح سجل الأرباح:</div>
+        <input id="owner-pin-input" type="password" dir="ltr" placeholder="PIN (2026)" class="w-full rounded-xl bg-slate-950 border border-slate-800 px-4 py-3 text-center text-white font-mono" />
+        <button onclick="verifyOwnerPin()" class="w-full py-3 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-black text-xs sm:text-sm" data-i18n="ownerUnlockBtn">فتح سجل المالك السري 🔓</button>
+      </div>
+
+      <div id="owner-unlocked-content" class="hidden space-y-6">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="p-5 rounded-2xl bg-slate-900 border border-emerald-500/30">
+            <div class="text-xs text-emerald-300 font-bold mb-1">Total Verified Revenue</div>
+            <div id="real-revenue-amount" class="text-3xl font-black text-white font-mono" dir="ltr">$0.00</div>
+            <div class="text-[11px] text-slate-400 mt-1">PayPal: pipohost@gmail.com</div>
+          </div>
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800">
+            <div class="text-xs text-slate-400 font-bold mb-1">Fulfilled Orders</div>
+            <div id="real-orders-count" class="text-3xl font-black text-cyan-400 font-mono" dir="ltr">0</div>
+            <div id="ledger-status-badge" class="text-[11px] text-slate-400 mt-1">0 Orders</div>
+          </div>
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between">
+            <div class="text-xs text-slate-400 font-bold">Ledger Controls</div>
+            <div class="flex gap-2 pt-2">
+              <button onclick="loadRealLedgerFromServer()" class="flex-1 py-2 rounded-lg bg-slate-800 text-xs font-bold text-white">🔄 Refresh</button>
+              <button onclick="resetRealLedgerOnServer()" class="flex-1 py-2 rounded-lg bg-rose-500/15 border border-rose-500/30 text-xs font-bold text-rose-300">Reset ($0.00)</button>
+            </div>
+          </div>
+        </div>
+        <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-3 max-h-[260px] overflow-y-auto">
+          <div id="real-transactions-list" class="space-y-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- خلفية شبكية مضيئة -->
+  <div class="fixed inset-0 z-0 pointer-events-none">
+    <div class="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[850px] h-[420px] bg-gradient-to-tr from-cyan-500/15 via-blue-600/10 to-violet-600/15 blur-[130px] rounded-full"></div>
+  </div>
+
+  <!-- شريط التنقل العلوي مع زر تغيير لغة الموقع بالكامل (عربي / English) -->
+  <header class="relative z-20 border-b border-slate-800/70 bg-[#060911]/90 backdrop-blur-xl sticky top-0">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between gap-4">
+      <div class="inline-flex items-center gap-3 select-none" dir="ltr">
+        <div class="relative flex items-center justify-center">
+          <div class="absolute -inset-1 rounded-full bg-gradient-to-r from-cyan-500 via-blue-500 to-violet-600 opacity-40 blur-md"></div>
+          <svg width="44" height="44" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="relative z-10">
+            <path d="M32 4L56.2487 18V46L32 60L7.75129 46V18L32 4Z" stroke="#06B6D4" stroke-width="2" stroke-opacity="0.4" fill="#090D16" />
+            <path d="M16 20L32 50L36.5 41.5L24.5 20H16Z" fill="#06B6D4" />
+            <path d="M48 20L38 38.5L33.5 30L40 20H48Z" fill="#8B5CF6" />
+            <circle cx="32" cy="22" r="3.5" fill="#22D3EE" />
+            <path d="M32 25.5V34" stroke="#22D3EE" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <div class="flex items-center">
+            <span class="font-black tracking-tighter text-white text-2xl">VELO</span>
+            <span class="font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-violet-500 text-2xl">ZA</span>
+          </div>
+          <span class="text-[9px] uppercase tracking-[0.28em] text-cyan-400/80 font-semibold -mt-1">Enterprise OS</span>
+        </div>
+      </div>
+
+      <nav class="hidden lg:flex items-center gap-6 text-sm font-semibold text-slate-300">
+        <a href="#about-veloza" class="hover:text-cyan-400 transition" data-i18n="navAbout">عن منصة Veloza</a>
+        <a href="#trust-security" class="hover:text-emerald-400 transition" data-i18n="navTrust">🛡️ الضمان والحماية</a>
+        <a href="#services" class="hover:text-cyan-400 transition" data-i18n="navServices">الخدمات الأربع</a>
+        <a href="#pricing" class="hover:text-cyan-400 transition" data-i18n="navPricing">الباقات ($9 - $39)</a>
+        <a href="#builder" class="hover:text-violet-400 transition" data-i18n="navBuilder">استلام الحزمة الفورية</a>
+      </nav>
+
+      <div class="flex items-center gap-2.5">
+        <!-- زر تغيير لغة الموقع بالكامل (عربي / English) -->
+        <button onclick="toggleSiteLanguage()" class="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-cyan-500/40 text-cyan-300 font-black text-xs sm:text-sm flex items-center gap-1.5 shadow transition" data-i18n="langSwitchBtn">
+          🇬🇧 English
+        </button>
+
+        <a href="#pricing" class="px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-xs sm:text-sm shadow-lg transition" data-i18n="navCta">
+          ابدأ الآن ($9 فقط!)
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="relative z-10 max-w-7xl mx-auto px-6 pt-14 space-y-24">
+    <!-- القسم الترحيبي الرئيسي -->
+    <section class="text-center max-w-4xl mx-auto space-y-6">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900 border border-emerald-500/30 text-emerald-300 text-xs font-bold" data-i18n="heroBadge">
+        🔥 أسعار اقتصادية خفيفة في متناول الجميع تبدأ من $9 فقط • تسليم رقمي فوري ومضمون
+      </div>
+      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
+        <span data-i18n="heroTitle1">احصل على دراسة جدوى مشروعك، حملاتك الإعلانية،</span>
+        <span class="block mt-2 bg-clip-text text-transparent bg-gradient-to-l from-amber-300 via-cyan-400 to-violet-500" data-i18n="heroTitle2">
+          وملفات الأتمتة وكود موقعك في ثوانٍ.
+        </span>
+      </h1>
+      <p class="text-base sm:text-lg text-slate-400 max-w-3xl mx-auto leading-relaxed" data-i18n="heroSub">
+        بدلاً من دفع مئات الدولارات لوكالات التسويق والبرمجة، تمنحك منصة Veloza 4 منظومات تنفيذية حقيقية مخصصة لبيانات مشروعك بأسعار رمزية خفيفة ($9 / $19 / $39) مع حماية كاملة للمشتري عبر PayPal.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+        <a href="#pricing" class="px-8 py-4 rounded-2xl bg-white text-slate-950 font-black text-sm sm:text-base hover:bg-cyan-50 shadow-xl transition" data-i18n="heroBtn1">
+          استعرض الباقات الاقتصادية ($9 - $39)
+        </a>
+        <a href="#builder" class="px-8 py-4 rounded-2xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-white font-bold text-sm sm:text-base transition" data-i18n="heroBtn2">
+          تخصيص مشروعك واستلام الملفات ↓
+        </a>
+      </div>
+    </section>
+
+    <!-- أزرار وشارات الثقة والموثوقية والحماية الكاملة للعملاء والدفع -->
+    <section id="trust-security" class="space-y-5">
+      <div class="text-center">
+        <span class="text-xs font-bold text-emerald-400" data-i18n="trustClickHint">
+          🛡️ اضغط على أي زر من أزرار الحماية والموثوقية أدناه لعرض شهادة الضمان الرسمية للعميل
+        </span>
+      </div>
+
+      <div id="trust-badges-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+
+      <!-- قسم "عن منصة Veloza" (About Veloza) -->
+      <div id="about-veloza" class="rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900/90 via-[#090D16] to-slate-900/90 p-8 sm:p-10 mt-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-7 space-y-4">
+            <span class="px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-bold" data-i18n="aboutBadge">
+              🌐 عن منصة Veloza • About Veloza Platform
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-black text-white leading-snug" data-i18n="aboutTitle">
+              وكالة أعمال وأتمتة رقمية ذكية تختصر عليك أشهر من التخطيط والتكاليف
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed" data-i18n="aboutP1">
+              تأسست منصة Veloza لتمكين رواد الأعمال وأصحاب المتاجر والشركات الناشئة من إطلاق وتوسيع مشاريعهم على أسس اقتصادية وتقنية متينة دون الحاجة لدفع آلاف الدولارات لوكالات الاستشارات والبرمجة.
+            </p>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed" data-i18n="aboutP2">
+              عبر محركنا الذكي، تحصل فور الدفع على تقرير PDF منسق لدراسة الجدوى المالية، حملات إعلانية جاهزة للنسخ، ملف أتمتة جاهز لـ n8n و Make، وكود موقع صفحة هبوط جاهز للنشر المجاني مع دليل مبسط خطوة بخطوة.
+            </p>
+          </div>
+
+          <div class="lg:col-span-5 grid grid-cols-2 gap-4 text-center">
+            <div class="p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-1">
+              <div class="text-2xl font-black text-emerald-400 font-mono">100%</div>
+              <div class="text-xs text-slate-400" data-i18n="stat1">حماية وخصوصية تامة لبيانات مشروعك</div>
+            </div>
+            <div class="p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-1">
+              <div class="text-2xl font-black text-cyan-400 font-mono">&lt; 10s</div>
+              <div class="text-xs text-slate-400" data-i18n="stat2">توليد وتسليم فوري للملفات الأربعة</div>
+            </div>
+            <div class="p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-1">
+              <div class="text-2xl font-black text-white font-mono">4 in 1</div>
+              <div class="text-xs text-slate-400" data-i18n="stat3">دراسة + إعلانات + أتمتة + موقع</div>
+            </div>
+            <div class="p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-1">
+              <div class="text-2xl font-black text-amber-300 font-mono">AR / EN</div>
+              <div class="text-xs text-slate-400" data-i18n="stat4">واجهة ومستشار ذكي ثنائي اللغة 24/7</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- الخدمات الأربع الحقيقية المعتمدة في المنصة -->
+    <section id="services" class="space-y-8">
+      <div class="text-center max-w-3xl mx-auto space-y-3">
+        <span class="px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-bold" data-i18n="servicesBadge">
+          الخدمات والمنتجات الرقمية المعتمدة
+        </span>
+        <h2 class="text-2xl sm:text-4xl font-black text-white" data-i18n="servicesTitle">
+          4 منظومات تنفيذية حقيقية يستلمها العميل فوراً بعد الدفع
+        </h2>
+      </div>
+
+      <div id="services-cards-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+    </section>
+
+    <!-- خطة الأسعار الاقتصادية الخفيفة ($9 / $19 / $39) -->
+    <section id="pricing" class="space-y-8">
+      <div class="text-center max-w-3xl mx-auto space-y-3">
+        <span class="px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-bold" data-i18n="pricingBadge">
+          أسعار اقتصادية خفيفة ومشجعة للشراء الفوري
+        </span>
+        <h2 class="text-2xl sm:text-4xl font-black text-white" data-i18n="pricingTitle">
+          اختر باقتك الاقتصادية واستلم ملفات مشروعك فوراً
+        </h2>
+        <p class="text-sm sm:text-base text-slate-400" data-i18n="pricingSub">
+          دفعة واحدة فقط عبر بوابة PayPal الرسمية المحمية بدون أي التزامات أو اشتراكات شهرية.
+        </p>
+      </div>
+
+      <div id="pricing-cards-grid" class="grid grid-cols-1 lg:grid-cols-3 gap-7 items-stretch"></div>
+    </section>
+
+    <!-- بوابة بناء وتسليم الحزم التنفيذية الحقيقية والدفع الفوري -->
+    <section id="builder" class="rounded-3xl border border-violet-500/30 bg-[#090D16]/95 p-6 sm:p-8 space-y-8 shadow-2xl">
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-bold text-violet-400" data-i18n="builderBadge">محرك التخصيص والتسليم الفوري (Real Deliverables Generator)</span>
+        <h2 class="text-xl sm:text-2xl font-black text-white mt-1" data-i18n="builderTitle">
+          بوابة تخصيص وبناء الحزمة التنفيذية لمشروعك
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-400 mt-1" data-i18n="builderSub">
+          أدخل بيانات مشروعك الحقيقية لاستلام التقرير القابل للطباعة PDF، معاينة موقعك الجاهز، ودليل الاستخدام خطوة بخطوة.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <form onsubmit="handleBuildRealPackage(event)" class="lg:col-span-5 p-6 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-4">
+          <h3 class="text-sm font-bold text-cyan-400 border-b border-slate-800 pb-3" data-i18n="formHeader">
+            1. أدخل بيانات المشروع والباقة
+          </h3>
+
+          <div class="space-y-3 text-xs">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-slate-300 font-bold mb-1" data-i18n="lblCustomer">اسم العميل / المؤسس *</label>
+                <input id="inp-customer" type="text" placeholder="مثال: خالد العتيبي" class="w-full rounded-xl bg-slate-950 border border-slate-800 px-3.5 py-2.5 text-white" required />
+              </div>
+              <div>
+                <label class="block text-slate-300 font-bold mb-1" data-i18n="lblEmail">البريد الإلكتروني *</label>
+                <input id="inp-email" type="email" dir="ltr" placeholder="name@company.com" class="w-full rounded-xl bg-slate-950 border border-slate-800 px-3.5 py-2.5 text-white" required />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-slate-300 font-bold mb-1" data-i18n="lblProject">اسم المشروع أو المتجر *</label>
+              <input id="inp-project" type="text" placeholder="مثال: متجر لافندر للعطور / أكاديمية نبراس" class="w-full rounded-xl bg-slate-950 border border-slate-800 px-3.5 py-2.5 text-white" required />
+            </div>
+
+            <div>
+              <label class="block text-slate-300 font-bold mb-1" data-i18n="lblNiche">القطاع أو مجال العمل الدقيق *</label>
+              <input id="inp-niche" type="text" placeholder="مثال: التجارة الإلكترونية للعطور الفاخرة" class="w-full rounded-xl bg-slate-950 border border-slate-800 px-3.5 py-2.5 text-white" required />
+            </div>
+
+            <div>
+              <label class="block text-slate-300 font-bold mb-1" data-i18n="lblAudience">الجمهور المستهدف *</label>
+              <input id="inp-audience" type="text" placeholder="مثال: الباحثون عن الهدايا والعطور الفاخرة في الخليج" class="w-full rounded-xl bg-slate-950 border border-slate-800 px-3.5 py-2.5 text-white" required />
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-slate-300 font-bold mb-1" data-i18n="lblPrice">متوسط سعر منتجك ($ USD)</label>
+                <input id="inp-price" type="number" min="5" value="45" class="w-full rounded-xl bg-slate-950 border border-slate-800 px-3.5 py-2.5 text-white font-mono" required />
+              </div>
+              <div>
+                <label class="block text-slate-300 font-bold mb-1" data-i18n="lblBudget">ميزانية التسويق الشهرية ($)</label>
+                <input id="inp-budget" type="number" min="50" value="600" class="w-full rounded-xl bg-slate-950 border border-slate-800 px-3.5 py-2.5 text-white font-mono" required />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-slate-300 font-bold mb-1" data-i18n="lblPlan">الباقة الاقتصادية المختارة</label>
+              <select id="inp-plan" onchange="updateDynamicPayPalButton()" class="w-full rounded-xl bg-slate-950 border border-slate-800 px-3.5 py-2.5 text-white font-bold">
+                <option value="starter" id="opt-starter">باقة البداية السريعة ($9 فقط)</option>
+                <option value="growth-pro" id="opt-growth" selected>باقة النمو والأتمتة الشاملة ($19 فقط - الأكثر مبيعاً)</option>
+                <option value="enterprise-scale" id="opt-agency">الباقة الاحترافية للوكالات والشركات ($39 فقط)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="space-y-2.5 pt-2">
+            <a id="dynamic-paypal-link" href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=pipohost%40gmail.com&item_name=Veloza+-+Growth+and+Automation+Pro+Suite&item_number=growth-pro&amount=19.00&currency_code=USD&no_shipping=1" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-black text-xs sm:text-sm shadow-lg flex items-center justify-center gap-2 transition">
+              <span>💳 الدفع المباشر عبر PayPal ($19 فقط)</span>
+            </a>
+
+            <button type="submit" class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 hover:from-cyan-400 hover:to-violet-500 text-white font-bold text-xs sm:text-sm shadow-lg transition" data-i18n="btnGenerateNow">
+              ⚡ توليد وإصدار الحزمة التنفيذية الكاملة الآن
+            </button>
+          </div>
+        </form>
+
+        <div id="deliverables-output-area" class="lg:col-span-7 rounded-2xl border border-dashed border-slate-800 bg-slate-900/30 p-6 flex flex-col justify-center items-center text-center min-h-[460px]"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- تذييل الموقع الرسمي للعملاء + زر سري صغير في الزاوية لبوابة المالك المحمية -->
+  <footer class="relative z-10 max-w-7xl mx-auto px-6 mt-24 pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+    <div data-i18n="footerRights">© 2026 Veloza Enterprise OS. جميع الحقوق محفوظة • مدفوعات آمنة ومحمية عبر PayPal.</div>
+    <div class="flex items-center gap-4">
+      <span class="text-emerald-400/90 font-semibold">🔒 256-Bit SSL & PayPal Buyer Protection</span>
+      <button onclick="openOwnerVault()" class="text-slate-600 hover:text-slate-400 transition" data-i18n="footerOwnerBtn">
+        🔒 بوابة الإدارة
+      </button>
+    </div>
+  </footer>
+
+  <!-- البوت الذكي الشامل باللغتين العربية والإنجليزية -->
+  <div id="chatbot-wrapper" dir="rtl" class="fixed bottom-6 left-6 z-50">
+    <div id="chatbot-window" class="hidden mb-4 w-[365px] sm:w-[420px] h-[540px] rounded-3xl border border-slate-800 bg-[#080C14]/95 backdrop-blur-2xl shadow-2xl flex flex-col overflow-hidden">
+      <div class="p-4 bg-gradient-to-r from-slate-900 via-[#0E1526] to-slate-900 border-b border-slate-800 flex items-center justify-between">
+        <div>
+          <h4 id="bot-header-title" class="text-sm font-bold text-white">🤖 مستشار Veloza الذكي (عربي / EN)</h4>
+          <p id="bot-header-sub" class="text-[11px] text-emerald-400">متصل الآن • يجيب فوراً بالعربية والإنجليزية</p>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <button onclick="toggleSiteLanguage()" id="bot-lang-btn" class="px-2.5 py-1 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-300 text-xs font-bold">🇬🇧 EN</button>
+          <button onclick="toggleChat()" class="text-slate-400 hover:text-white text-lg font-bold px-2">✕</button>
+        </div>
+      </div>
+
+      <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 text-xs"></div>
+
+      <form onsubmit="sendChatMessage(event)" class="p-3 border-t border-slate-800 bg-slate-900/60 flex gap-2">
+        <input id="chat-input" type="text" placeholder="اسأل بالعربية أو الإنجليزية..." class="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white" />
+        <button id="chat-send-btn" type="submit" class="px-4 py-2 rounded-xl bg-cyan-500 text-slate-950 font-bold text-xs">إرسال</button>
+      </form>
+    </div>
+
+    <button onclick="toggleChat()" class="flex items-center gap-3 px-5 py-3.5 rounded-full bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 text-white font-bold text-sm shadow-2xl hover:scale-105 transition">
+      <span id="floating-bot-btn-text">💬 المستشار الذكي (عربي / English)</span>
+    </button>
+  </div>
+
+  <script>
+    // ============================================================================
+    // FULL SITE-WIDE BILINGUAL TRANSLATION ENGINE (ARABIC RTL <-> ENGLISH LTR)
+    // ============================================================================
+    let siteLang = "ar";
+    let currentGeneratedPackage = null;
+    let activeDeliverableTab = "guide";
+
+    const I18N_DICT = {
+      ar: {
+        langSwitchBtn: "🇬🇧 English",
+        gateBadge: "🛡️ بوابة الحماية والموثوقية السيادية • Veloza Security Shield",
+        gateStatus: "تم التحقق من التشفير البنكي (256-Bit SSL) وحماية المشتري عبر PayPal 100%",
+        gateEnterBtn: "الدخول الآمن إلى منصة Veloza ←",
+        trustModalFooter: "✅ معتمد وموثق رسمياً في نظام Veloza Enterprise OS",
+        ownerVaultTitle: "بوابة الإدارة الخاصة بالمالك (Owner Private Vault)",
+        ownerVaultSub: "هذه البوابة معزولة تماماً عن واجهة العملاء ومحمية برمز سري",
+        ownerPinPrompt: "أدخل الرمز السري للمالك (2026) لفتح سجل الأرباح:",
+        ownerUnlockBtn: "فتح سجل المالك السري 🔓",
+        navAbout: "عن منصة Veloza",
+        navTrust: "🛡️ الضمان والحماية",
+        navServices: "الخدمات الأربع",
+        navPricing: "الباقات ($9 - $39)",
+        navBuilder: "استلام الحزمة الفورية",
+        navCta: "ابدأ الآن ($9 فقط!)",
+        heroBadge: "🔥 أسعار اقتصادية خفيفة في متناول الجميع تبدأ من $9 فقط • تسليم رقمي فوري ومضمون",
+        heroTitle1: "احصل على دراسة جدوى مشروعك، حملاتك الإعلانية،",
+        heroTitle2: "وملفات الأتمتة وكود موقعك في ثوانٍ.",
+        heroSub: "بدلاً من دفع مئات الدولارات لوكالات التسويق والبرمجة، تمنحك منصة Veloza 4 منظومات تنفيذية حقيقية مخصصة لبيانات مشروعك بأسعار رمزية خفيفة ($9 / $19 / $39) مع حماية كاملة للمشتري عبر PayPal.",
+        heroBtn1: "استعرض الباقات الاقتصادية ($9 - $39)",
+        heroBtn2: "تخصيص مشروعك واستلام الملفات ↓",
+        trustClickHint: "🛡️ اضغط على أي زر من أزرار الحماية والموثوقية أدناه لعرض شهادة الضمان الرسمية للعميل",
+        aboutBadge: "🌐 عن منصة Veloza • About Veloza Platform",
+        aboutTitle: "وكالة أعمال وأتمتة رقمية ذكية تختصر عليك أشهر من التخطيط والتكاليف",
+        aboutP1: "تأسست منصة Veloza لتمكين رواد الأعمال وأصحاب المتاجر والشركات الناشئة من إطلاق وتوسيع مشاريعهم على أسس اقتصادية وتقنية متينة دون الحاجة لدفع آلاف الدولارات لوكالات الاستشارات والبرمجة.",
+        aboutP2: "عبر محركنا الذكي، تحصل فور الدفع على تقرير PDF منسق لدراسة الجدوى المالية، حملات إعلانية جاهزة للنسخ، ملف أتمتة جاهز لـ n8n و Make، وكود موقع صفحة هبوط جاهز للنشر المجاني مع دليل مبسط خطوة بخطوة.",
+        stat1: "حماية وخصوصية تامة لبيانات مشروعك",
+        stat2: "توليد وتسليم فوري للملفات الأربعة",
+        stat3: "دراسة + إعلانات + أتمتة + موقع",
+        stat4: "واجهة ومستشار ذكي ثنائي اللغة 24/7",
+        servicesBadge: "الخدمات والمنتجات الرقمية المعتمدة",
+        servicesTitle: "4 منظومات تنفيذية حقيقية يستلمها العميل فوراً بعد الدفع",
+        pricingBadge: "أسعار اقتصادية خفيفة ومشجعة للشراء الفوري",
+        pricingTitle: "اختر باقتك الاقتصادية واستلم ملفات مشروعك فوراً",
+        pricingSub: "دفعة واحدة فقط عبر بوابة PayPal الرسمية المحمية بدون أي التزامات أو اشتراكات شهرية.",
+        builderBadge: "محرك التخصيص والتسليم الفوري (Real Deliverables Generator)",
+        builderTitle: "بوابة تخصيص وبناء الحزمة التنفيذية لمشروعك",
+        builderSub: "أدخل بيانات مشروعك الحقيقية لاستلام التقرير القابل للطباعة PDF، معاينة موقعك الجاهز، ودليل الاستخدام خطوة بخطوة.",
+        formHeader: "1. أدخل بيانات المشروع والباقة",
+        lblCustomer: "اسم العميل / المؤسس *",
+        lblEmail: "البريد الإلكتروني *",
+        lblProject: "اسم المشروع أو المتجر *",
+        lblNiche: "القطاع أو مجال العمل الدقيق *",
+        lblAudience: "الجمهور المستهدف *",
+        lblPrice: "متوسط سعر منتجك ($ USD)",
+        lblBudget: "ميزانية التسويق الشهرية ($)",
+        lblPlan: "الباقة الاقتصادية المختارة",
+        btnGenerateNow: "⚡ توليد وإصدار الحزمة التنفيذية الكاملة الآن",
+        footerRights: "© 2026 Veloza Enterprise OS. جميع الحقوق محفوظة • مدفوعات آمنة ومحمية عبر PayPal.",
+        footerOwnerBtn: "🔒 بوابة الإدارة"
+      },
+      en: {
+        langSwitchBtn: "🇸🇦 العربية",
+        gateBadge: "🛡️ Veloza Sovereign Security & Buyer Protection Shield",
+        gateStatus: "256-Bit SSL Bank-Grade Encryption & 100% PayPal Buyer Protection Verified",
+        gateEnterBtn: "Enter Veloza Platform Securely →",
+        trustModalFooter: "✅ Officially Certified & Protected by Veloza Enterprise OS",
+        ownerVaultTitle: "Owner Private Sovereign Vault",
+        ownerVaultSub: "Isolated from public visitors and protected by Owner PIN",
+        ownerPinPrompt: "Enter Owner Secret PIN (2026) to unlock Revenue Ledger:",
+        ownerUnlockBtn: "Unlock Private Revenue Ledger 🔓",
+        navAbout: "About Veloza",
+        navTrust: "🛡️ Trust & Protection",
+        navServices: "4 Core Services",
+        navPricing: "Pricing ($9 - $39)",
+        navBuilder: "Instant Builder",
+        navCta: "Start Now ($9 Only!)",
+        heroBadge: "🔥 Pocket-Friendly One-Time Pricing Starting at $9 • Instant Guaranteed Digital Delivery",
+        heroTitle1: "Get Your Project Feasibility Study, Ad Campaigns,",
+        heroTitle2: "Automation Workflows & Website Code in Seconds.",
+        heroSub: "Instead of paying thousands to agencies and waiting weeks, Veloza generates 4 complete, custom-tailored business & technical assets for your project at ultra-light prices ($9 / $19 / $39) backed by PayPal Buyer Protection.",
+        heroBtn1: "Explore Affordable Plans ($9 - $39)",
+        heroBtn2: "Customize Project & Get Files ↓",
+        trustClickHint: "🛡️ Click any Trust & Security badge below to inspect your official Buyer Protection Certificate",
+        aboutBadge: "🌐 About Veloza Platform • Enterprise AI OS",
+        aboutTitle: "A Complete Digital Business & Automation Agency that Saves You Months of Work",
+        aboutP1: "Veloza was engineered to empower entrepreneurs, e-commerce store owners, and startups to launch and scale on solid financial and technical foundations without paying thousands of dollars to traditional consultancies.",
+        aboutP2: "Instantly upon checkout, our engine delivers a printable PDF Financial Feasibility Study, copy-ready Multi-Platform Ad Campaigns, an importable n8n/Make.com JSON Automation Workflow, and a complete HTML5+Tailwind Landing Page with a 3-step beginner guide.",
+        stat1: "100% Data Privacy & NDA Protection",
+        stat2: "Instant Generation & Delivery (< 10s)",
+        stat3: "Feasibility + Ads + Automation + Website",
+        stat4: "Full Bilingual Interface & AI Advisor 24/7",
+        servicesBadge: "Certified Digital Deliverables",
+        servicesTitle: "4 Complete Execution Systems Delivered Instantly After Checkout",
+        pricingBadge: "Ultra-Affordable Impulse-Buy Pricing",
+        pricingTitle: "Choose Your Plan & Receive Your Project Files Instantly",
+        pricingSub: "One-time payment via official PayPal Checkout with 0% recurring hidden fees.",
+        builderBadge: "Real Deliverables Customization Engine",
+        builderTitle: "Customize & Build Your Project Executive Suite",
+        builderSub: "Enter your real project details to receive your Printable PDF Report, Live Website Preview, n8n Workflow, and 3-Step Usage Guide.",
+        formHeader: "1. Enter Your Project Details & Package",
+        lblCustomer: "Client / Founder Name *",
+        lblEmail: "Email Address *",
+        lblProject: "Project or Store Name *",
+        lblNiche: "Industry or Business Niche *",
+        lblAudience: "Target Audience *",
+        lblPrice: "Average Product Price ($ USD)",
+        lblBudget: "Monthly Marketing Budget ($)",
+        lblPlan: "Selected Package",
+        btnGenerateNow: "⚡ Generate & Issue Complete Executive Suite Now",
+        footerRights: "© 2026 Veloza Enterprise OS. All rights reserved • Protected by PayPal Checkout.",
+        footerOwnerBtn: "🔒 Admin Vault"
+      }
+    };
+
+    const TRUST_ITEMS = {
+      ar: [
+        {
+          icon: "💳",
+          badge: "PayPal Verified",
+          title: "حماية المشتري عبر PayPal 100%",
+          sub: "دفع آمن ومشفر بالكامل • اضغط للتفاصيل",
+          desc: "تتم كافة المعاملات المالية مباشرة عبر بوابة PayPal الرسمية المشفرة. نحن لا نطلع على بيانات بطاقتك البنكية ولا نخزنها أبداً، وتتمتع كل عملية شراء بحماية المشتري الكاملة من PayPal."
+        },
+        {
+          icon: "🔒",
+          badge: "256-Bit SSL",
+          title: "تشفير بنكي 256-Bit SSL",
+          sub: "سرية تامة لبيانات مشروعك • اضغط للتفاصيل",
+          desc: "تعمل منصة Veloza ببروتوكولات تشفير TLS 1.3 البنكية مع جدار حماية ذكي ضد هجمات الـ Bots لضمان السرية التامة لبيانات مشروعك ودراسة الجدوى الخاصة بك."
+        },
+        {
+          icon: "⚡",
+          badge: "Instant Delivery",
+          title: "ضمان التسليم الرقمي الفوري",
+          sub: "استلام فوري بدون انتظار • اضغط للتفاصيل",
+          desc: "فور إتمام عملية الدفع، يقوم محرك الإنجاز الذاتي بتوليد حزمتك الكاملة (تقرير PDF للطباعة + الإعلانات + ملف الأتمتة + كود الموقع) وعرضها للتحميل الفوري في نفس الصفحة."
+        },
+        {
+          icon: "🏅",
+          badge: "14-Day Guarantee",
+          title: "ضمان استرداد الأموال 14 يوماً",
+          sub: "شراء آمن خالٍ من المخاطر • اضغط للتفاصيل",
+          desc: "نثق بنسبة 100% في جودة ودقة المخرجات التي يولدها محرك Veloza. في حال واجهت أي عائق في استلام أو تشغيل ملفاتك، نضمن لك الدعم الفوري أو استرداد كامل المبلغ خلال 14 يوماً."
+        }
+      ],
+      en: [
+        {
+          icon: "💳",
+          badge: "PayPal Verified",
+          title: "100% PayPal Buyer Protection",
+          sub: "Encrypted Official Checkout • Click for details",
+          desc: "All payments are processed directly through PayPal's official encrypted gateway. We never see or store your card details, and every purchase is covered by official PayPal Buyer Protection."
+        },
+        {
+          icon: "🔒",
+          badge: "256-Bit SSL",
+          title: "256-Bit Bank-Grade SSL",
+          sub: "100% Project Data Privacy • Click for details",
+          desc: "Veloza operates over TLS 1.3 cryptographic protocols with an active Anti-Bot Shield to guarantee complete confidentiality for your business idea and financial study."
+        },
+        {
+          icon: "⚡",
+          badge: "Instant Delivery",
+          title: "Instant Digital Fulfillment",
+          sub: "Zero-Wait Download (< 10s) • Click for details",
+          desc: "Immediately after checkout, our autonomous engine generates your complete suite (Printable PDF Report + Ad Copy + n8n JSON + HTML Website) for instant download on the same screen."
+        },
+        {
+          icon: "🏅",
+          badge: "14-Day Guarantee",
+          title: "14-Day Money-Back Guarantee",
+          sub: "100% Risk-Free Purchase • Click for details",
+          desc: "We stand behind the precision and quality of Veloza's deliverables. If you encounter any technical issue receiving or using your files, we provide instant support or a full 14-day refund."
+        }
+      ]
+    };
+
+    const SERVICES_ITEMS = {
+      ar: [
+        {
+          cat: "التخطيط المالي والاستراتيجي",
+          color: "text-cyan-400",
+          title: "1. دراسة الجدوى الاقتصادية والنموذج المالي (PDF + تفاعلي)",
+          desc: "حسابات مالية واقتصادية دقيقة لمشروعك تشمل: تكلفة الاستحواذ على العميل (CAC)، القيمة الدائمة للعميل (LTV)، نقطة التعادل بالوحدات (Break-Even)، صافي الربح الشهري، وتوقعات الإيرادات لـ 12 شهراً جاهزة للطباعة كـ PDF."
+        },
+        {
+          cat: "التسويق الرقمي والمبيعات",
+          color: "text-cyan-400",
+          title: "2. منظومة الحملات الإعلانية وسلاسل البريد البيعية",
+          desc: "نصوص إعلانية عالية التحويل جاهزة للنسخ بضغطة زر والنشر الفوري على (إنستغرام، سناب شات، تيك توك، X، وجوجل) مع نصوص الفيديو الإعلاني وسلسلة رسائل بريد إلكتروني لتحويل الزوار إلى مشترين."
+        },
+        {
+          cat: "الأتمتة والربط التقني",
+          color: "text-violet-400",
+          title: "3. قوالب الأتمتة البرمجية الجاهزة (n8n & Make.com JSON)",
+          desc: "ملف أتمتة قياسي حقيقي بصيغة JSON جاهز للاستيراد المباشر في منصة n8n أو Make.com لربط موقعك بالتقاط العملاء وإرسال الفواتير والرسائل الترحيبية تلقائياً."
+        },
+        {
+          cat: "التطوير والواجهات الرقمية",
+          color: "text-amber-400",
+          title: "4. كود صفحة الهبوط البيعية الجاهزة للنشر (HTML5 + Tailwind)",
+          desc: "ملف موقع كامل ونظيف لصفحة هبوط بيعية مصممة خصيصاً لاسم مشروعك وسعر منتجك، جاهزة للمعاينة المباشرة وللرفع المجاني في 30 ثانية عبر Netlify Drop."
+        }
+      ],
+      en: [
+        {
+          cat: "Financial & Strategic Planning",
+          color: "text-cyan-400",
+          title: "1. Financial Feasibility & Unit Economics Study (Printable PDF)",
+          desc: "Exact unit-economics calculations for your project: Customer Acquisition Cost (CAC), Lifetime Value (LTV), Monthly Break-Even Units, Net Profit, and 12-Month Revenue Projections formatted as a printable PDF book."
+        },
+        {
+          cat: "Digital Marketing & Copywriting",
+          color: "text-cyan-400",
+          title: "2. High-Conversion Ad Campaigns & Email Sequences",
+          desc: "Copy-ready ad campaigns tailored to your project for Instagram, Snapchat, TikTok, X, and Google Search, complete with short-form video scripts and a 3-part automated email sequence."
+        },
+        {
+          cat: "Technical Workflow Automation",
+          color: "text-violet-400",
+          title: "3. Ready-to-Import Automation Blueprints (n8n & Make JSON)",
+          desc: "Standard, production-ready JSON workflow files ready for 1-click import into n8n or Make.com to automate lead capture, AI qualification, and instant customer invoicing."
+        },
+        {
+          cat: "Web Development & Funnels",
+          color: "text-amber-400",
+          title: "4. Ready-to-Publish Landing Page Website Code (HTML5 + Tailwind)",
+          desc: "Clean, standalone HTML5 + Tailwind CSS sales landing page customized with your project name, target audience, and product price—ready for live preview and free 30-second hosting via Netlify Drop."
+        }
+      ]
+    };
+
+    const PRICING_ITEMS = {
+      ar: [
+        {
+          id: "starter",
+          code: "VLZ-STARTER-9",
+          name: "باقة البداية السريعة (Starter Launch)",
+          sub: "سعر رمزي خفيف لكل من يريد إطلاق مشروعه بدراسة وإعلانات جاهزة",
+          price: 9,
+          oldPrice: 29,
+          cycle: "دفعة واحدة فقط • تسليم فوري",
+          highlightNote: "🔥 بسعر فنجان قهوة تحصل على خطة وإعلانات قيمتها السوقية $350+",
+          featured: false,
+          features: [
+            "✅ دراسة جدوى اقتصادية ومالية مخصصة لمشروعك (تقرير PDF للطباعة)",
+            "✅ حزمة إعلانات تسويقية عالية التحويل (سناب، إنستغرام، تيك توك، و X)",
+            "✅ سلسلة رسائل بريدية ترحيبية وبيعية جاهزة (3 رسائل متكاملة)",
+            "✅ خارطة طريق تنفيذية للنمو خلال أول 30 يوماً"
+          ],
+          buyText: "💳 اشترِ الآن عبر PayPal ($9 فقط)",
+          custText: "تخصيص بيانات مشروعك لهذه الباقة ↓"
+        },
+        {
+          id: "growth-pro",
+          code: "VLZ-GROWTH-19",
+          badge: "الأكثر مبيعاً • شاملة الخدمات الأربع ($19 فقط)",
+          name: "باقة النمو والأتمتة الشاملة (Growth & Automation Pro)",
+          sub: "الباقة الاقتصادية الأكثر مبيعاً — تشمل جميع الخدمات الأربع كاملة!",
+          price: 19,
+          oldPrice: 59,
+          cycle: "دفعة واحدة شاملة • تسليم فوري",
+          highlightNote: "🔥 تحصل على 4 منظومات كاملة (دراسة + إعلانات + أتمتة + كود موقع) بـ $19 فقط!",
+          featured: true,
+          features: [
+            "✅ نموذج مالي واقتصادي متقدم (PDF): حساب CAC و LTV وتوقعات سنة كاملة",
+            "✅ ملف أتمتة حقيقي (JSON): جاهز للاستيراد الفوري في n8n و Make.com",
+            "✅ كود صفحة هبوط بيعية كاملة: (HTML5 + Tailwind CSS) مع معاينة حية",
+            "✅ حملات إعلانية شاملة: إنستغرام، سناب، تيك توك، وجوجل + نصوص فيديو",
+            "✅ خارطة طريق توسع لـ 90 يوماً + دليل استخدام من 3 خطوات"
+          ],
+          buyText: "💳 اشترِ الآن عبر PayPal ($19 فقط)",
+          custText: "تخصيص بيانات مشروعك لهذه الباقة ↓"
+        },
+        {
+          id: "enterprise-scale",
+          code: "VLZ-AGENCY-39",
+          badge: "رخصة إعادة بيع تجاري (White-Label)",
+          name: "الباقة الاحترافية للوكالات والشركات (Agency VIP)",
+          sub: "تشمل جميع الخدمات الأربع + رخصة تجارية لإعادة بيع المخرجات للعملاء",
+          price: 39,
+          oldPrice: 129,
+          cycle: "ترخيص تجاري شامل",
+          highlightNote: "🔥 بع عميلاً واحداً فقط وستسترد قيمة الباقة 5 أضعاف من أول يوم!",
+          featured: false,
+          features: [
+            "✅ جميع خدمات ومخرجات باقة Growth Pro بالكامل",
+            "✅ نموذج مالي استثماري لـ 12 شهراً جاهز للعرض على المستثمرين",
+            "✅ مسارات أتمتة متقدمة (التقاط العملاء + متابعة المبيعات + الفوترة)",
+            "✅ قالب صفحة هبوط ومبيعات متكامل مع أقسام الأسعار والأسئلة الشائعة",
+            "✅ رخصة تجارية كاملة (White-Label Agency Rights)"
+          ],
+          buyText: "💳 اشترِ الآن عبر PayPal ($39 فقط)",
+          custText: "تخصيص بيانات مشروعك لهذه الباقة ↓"
+        }
+      ],
+      en: [
+        {
+          id: "starter",
+          code: "VLZ-STARTER-9",
+          name: "Starter Launch Package",
+          sub: "Pocket-friendly entry plan to validate & launch your project fast",
+          price: 9,
+          oldPrice: 29,
+          cycle: "One-Time Payment • Instant Delivery",
+          highlightNote: "🔥 For the price of a coffee, get a study & ad suite worth $350+!",
+          featured: false,
+          features: [
+            "✅ Custom Financial Feasibility & Break-Even Study (Printable PDF)",
+            "✅ High-Conversion Ad Copy (Instagram, Snapchat, TikTok, and X)",
+            "✅ 3-Part Automated Welcome & Sales Email Sequence",
+            "✅ 30-Day Step-by-Step Execution Roadmap"
+          ],
+          buyText: "💳 Buy Now via PayPal ($9 Only)",
+          custText: "Customize Your Project for This Plan ↓"
+        },
+        {
+          id: "growth-pro",
+          code: "VLZ-GROWTH-19",
+          badge: "Best Seller • All 4 Complete Services ($19 Only)",
+          name: "Growth & Automation Pro Suite",
+          sub: "Our #1 most popular plan — includes all 4 business & tech systems!",
+          price: 19,
+          oldPrice: 59,
+          cycle: "One-Time All-Inclusive • Instant Delivery",
+          highlightNote: "🔥 Get all 4 systems (Feasibility + Ads + n8n Automation + Website Code) for $19!",
+          featured: true,
+          features: [
+            "✅ Advanced Financial Model (PDF): CAC, LTV, & 12-Month Projections",
+            "✅ Importable Automation Workflow (JSON) for n8n & Make.com",
+            "✅ Complete Landing Page Website Code (HTML5 + Tailwind) + Live Preview",
+            "✅ Full Multi-Platform Ad Suite + Short-Form Video Scripts",
+            "✅ 90-Day Scaling Masterplan + 3-Step Beginner Usage Guide"
+          ],
+          buyText: "💳 Buy Now via PayPal ($19 Only)",
+          custText: "Customize Your Project for This Plan ↓"
+        },
+        {
+          id: "enterprise-scale",
+          code: "VLZ-AGENCY-39",
+          badge: "Commercial Resell Rights (White-Label)",
+          name: "Agency & VIP White-Label Suite",
+          sub: "Includes all 4 services + full commercial license to resell to your clients",
+          price: 39,
+          oldPrice: 129,
+          cycle: "Full Commercial License",
+          highlightNote: "🔥 Sell to just 1 client and earn 5x your investment on day one!",
+          featured: false,
+          features: [
+            "✅ Everything in the Growth & Automation Pro Suite",
+            "✅ 12-Month Investor-Ready Financial Pitch Model",
+            "✅ Advanced Multi-Stage Automation Pipelines",
+            "✅ Complete Sales Funnel Landing Page Template",
+            "✅ Full White-Label Commercial Rights to Resell Deliverables"
+          ],
+          buyText: "💳 Buy Now via PayPal ($39 Only)",
+          custText: "Customize Your Project for This Plan ↓"
+        }
+      ]
+    };
+
+    function applySiteLanguage() {
+      const root = document.getElementById("html-root");
+      root.setAttribute("lang", siteLang);
+      root.setAttribute("dir", siteLang === "en" ? "ltr" : "rtl");
+
+      const dict = I18N_DICT[siteLang];
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (dict[key]) el.innerText = dict[key];
+      });
+
+      // تحديث placeholders وخيارات النموذج
+      if (siteLang === "en") {
+        document.getElementById("inp-customer").placeholder = "e.g. Alex Morgan";
+        document.getElementById("inp-project").placeholder = "e.g. Aura Luxury Perfumes / Nova SaaS";
+        document.getElementById("inp-niche").placeholder = "e.g. E-Commerce Luxury Perfumes";
+        document.getElementById("inp-audience").placeholder = "e.g. Gift shoppers & luxury enthusiasts";
+        document.getElementById("opt-starter").innerText = "Starter Launch Package ($9 Only)";
+        document.getElementById("opt-growth").innerText = "Growth & Automation Pro ($19 - Best Seller)";
+        document.getElementById("opt-agency").innerText = "Agency & VIP White-Label ($39 Only)";
+        document.getElementById("floating-bot-btn-text").innerText = "💬 Smart AI Advisor (EN / عربي)";
+      } else {
+        document.getElementById("inp-customer").placeholder = "مثال: خالد العتيبي";
+        document.getElementById("inp-project").placeholder = "مثال: متجر لافندر للعطور / أكاديمية نبراس";
+        document.getElementById("inp-niche").placeholder = "مثال: التجارة الإلكترونية للعطور الفاخرة";
+        document.getElementById("inp-audience").placeholder = "مثال: الباحثون عن الهدايا والعطور الفاخرة في الخليج";
+        document.getElementById("opt-starter").innerText = "باقة البداية السريعة ($9 فقط)";
+        document.getElementById("opt-growth").innerText = "باقة النمو والأتمتة الشاملة ($19 فقط - الأكثر مبيعاً)";
+        document.getElementById("opt-agency").innerText = "الباقة الاحترافية للوكالات والشركات ($39 فقط)";
+        document.getElementById("floating-bot-btn-text").innerText = "💬 المستشار الذكي (عربي / English)";
+      }
+
+      // 1. رندر شارات الثقة
+      const trustGrid = document.getElementById("trust-badges-grid");
+      trustGrid.innerHTML = TRUST_ITEMS[siteLang].map((t, idx) => `
+        <button onclick="openTrustModalByIndex(${idx})" class="p-5 rounded-2xl bg-slate-900/80 hover:bg-slate-900 border border-slate-800 hover:border-emerald-500/40 ${siteLang === 'en' ? 'text-left' : 'text-right'} transition space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-2xl">${t.icon}</span>
+            <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">${t.badge}</span>
+          </div>
+          <h4 class="text-xs sm:text-sm font-black text-white">${t.title}</h4>
+          <p class="text-[11px] text-slate-400">${t.sub}</p>
+        </button>
+      `).join("");
+
+      // 2. رندر بطاقات الخدمات الأربع
+      const srvGrid = document.getElementById("services-cards-grid");
+      srvGrid.innerHTML = SERVICES_ITEMS[siteLang].map(s => `
+        <div class="p-7 rounded-3xl bg-slate-900/70 border border-slate-800 hover:border-cyan-500/40 transition space-y-3">
+          <span class="text-xs font-bold ${s.color}">${s.cat}</span>
+          <h3 class="text-lg font-black text-white">${s.title}</h3>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">${s.desc}</p>
+        </div>
+      `).join("");
+
+      // 3. رندر بطاقات الباقات الاقتصادية ($9 / $19 / $39)
+      const prcGrid = document.getElementById("pricing-cards-grid");
+      prcGrid.innerHTML = PRICING_ITEMS[siteLang].map(p => `
+        <div class="rounded-3xl p-7 ${p.featured ? 'bg-gradient-to-b from-[#0E182D] via-[#090F1E] to-[#090D16] border-2 border-cyan-400 shadow-2xl shadow-cyan-950/40 lg:-translate-y-2' : 'bg-[#090D16]/95 border border-slate-800'} flex flex-col justify-between relative">
+          ${p.badge ? `<div class="absolute -top-3.5 ${siteLang === 'en' ? 'left-6' : 'right-6'} px-4 py-1 rounded-full ${p.featured ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white' : 'bg-amber-500/20 border border-amber-400/40 text-amber-300'} text-xs font-black shadow-lg">${p.badge}</div>` : ''}
+          <div class="space-y-5">
+            <div>
+              <div class="text-xs font-mono text-cyan-400">${p.code}</div>
+              <h3 class="text-xl font-black text-white mt-1">${p.name}</h3>
+              <p class="text-xs text-slate-400 mt-1">${p.sub}</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
+              <div class="flex items-baseline gap-3">
+                <span class="text-4xl font-black text-white font-mono" dir="ltr">$${p.price}</span>
+                <span class="text-sm text-slate-500 line-through font-mono" dir="ltr">$${p.oldPrice}</span>
+                <span class="text-xs text-emerald-400 font-bold">${p.cycle}</span>
+              </div>
+              <div class="text-[11px] text-amber-300">${p.highlightNote}</div>
+            </div>
+            <ul class="space-y-2.5 text-xs text-slate-200">
+              ${p.features.map(f => `<li>${f}</li>`).join("")}
+            </ul>
+          </div>
+          <div class="pt-6 mt-6 border-t border-slate-800 space-y-2.5">
+            <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=pipohost%40gmail.com&item_name=${encodeURIComponent('Veloza - ' + p.name)}&item_number=${p.id}&amount=${p.price}.00&currency_code=USD&no_shipping=1" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 px-4 rounded-xl ${p.featured ? 'bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 text-white' : 'bg-white hover:bg-cyan-50 text-slate-950'} font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg transition">
+              <span>${p.buyText}</span>
+            </a>
+            <button onclick="selectPlanInBuilder('${p.id}')" class="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-semibold text-xs transition">
+              ${p.custText}
+            </button>
+          </div>
+        </div>
+      `).join("");
+
+      updateDynamicPayPalButton();
+      renderDeliverablesView();
+      renderInitialBotWelcome();
+    }
+
+    function toggleSiteLanguage() {
+      siteLang = siteLang === "ar" ? "en" : "ar";
+      applySiteLanguage();
+    }
+
+    function openTrustModalByIndex(idx) {
+      const item = TRUST_ITEMS[siteLang][idx];
+      document.getElementById("trust-modal-title").innerText = item.title;
+      document.getElementById("trust-modal-badge").innerText = item.badge;
+      document.getElementById("trust-modal-desc").innerText = item.desc;
+      document.getElementById("trust-modal").classList.remove("hidden");
+    }
+
+    function closeTrustModal() {
+      document.getElementById("trust-modal").classList.add("hidden");
+    }
+
+    setTimeout(() => {
+      closeSecurityGate();
+    }, 2200);
+
+    function closeSecurityGate() {
+      const gate = document.getElementById("security-splash-gate");
+      if (gate) gate.classList.add("hidden");
+    }
+
+    function openOwnerVault() {
+      document.getElementById("owner-secret-modal").classList.remove("hidden");
+    }
+
+    function closeOwnerVault() {
+      document.getElementById("owner-secret-modal").classList.add("hidden");
+    }
+
+    function verifyOwnerPin() {
+      const pin = document.getElementById("owner-pin-input").value.trim();
+      if (pin === "2026" || pin.toLowerCase() === "veloza") {
+        document.getElementById("owner-pin-screen").classList.add("hidden");
+        document.getElementById("owner-unlocked-content").classList.remove("hidden");
+        loadRealLedgerFromServer();
+      } else {
+        alert(siteLang === "en" ? "Incorrect PIN! Default Owner PIN is: 2026" : "الرمز غير صحيح! الرمز الافتراضي للمالك هو: 2026");
+      }
+    }
+
+    const PLANS_META = {
+      "starter": { nameAr: "باقة البداية السريعة (Starter Launch)", nameEn: "Starter Launch Package", price: 9 },
+      "growth-pro": { nameAr: "باقة النمو والأتمتة الشاملة (Growth Pro)", nameEn: "Growth & Automation Pro Suite", price: 19 },
+      "enterprise-scale": { nameAr: "باقة الوكالات والشركات (Agency VIP)", nameEn: "Agency & VIP White-Label Suite", price: 39 }
+    };
+
+    function selectPlanInBuilder(planId) {
+      document.getElementById("inp-plan").value = planId;
+      updateDynamicPayPalButton();
+      document.getElementById("builder").scrollIntoView({ behavior: "smooth" });
+      document.getElementById("inp-customer").focus();
+    }
+
+    function updateDynamicPayPalButton() {
+      const planId = document.getElementById("inp-plan").value;
+      const plan = PLANS_META[planId];
+      const link = document.getElementById("dynamic-paypal-link");
+      const labelName = siteLang === "en" ? plan.nameEn : plan.nameAr;
+      link.href = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=pipohost%40gmail.com&item_name=${encodeURIComponent("Veloza - " + labelName)}&item_number=${planId}&amount=${plan.price}.00&currency_code=USD&no_shipping=1`;
+      link.innerHTML = siteLang === "en"
+        ? `<span>💳 Direct PayPal Checkout ($${plan.price} Only)</span>`
+        : `<span>💳 الدفع المباشر عبر PayPal ($${plan.price} فقط)</span>`;
+    }
+
+    async function handleBuildRealPackage(e) {
+      e.preventDefault();
+      const customerName = document.getElementById("inp-customer").value.trim();
+      const customerEmail = document.getElementById("inp-email").value.trim();
+      const projectName = document.getElementById("inp-project").value.trim();
+      const businessNiche = document.getElementById("inp-niche").value.trim();
+      const targetAudience = document.getElementById("inp-audience").value.trim();
+      const productPriceUsd = Math.max(5, Number(document.getElementById("inp-price").value) || 45);
+      const monthlyBudgetUsd = Math.max(50, Number(document.getElementById("inp-budget").value) || 600);
+      const planId = document.getElementById("inp-plan").value;
+      const plan = PLANS_META[planId];
+
+      const uniqueCode = Date.now().toString(36).toUpperCase();
+      const packageId = `VLZ-PKG-${uniqueCode}`;
+      const licenseKey = `VELOZA-${planId.toUpperCase()}-${uniqueCode}-VERIFIED`;
+
+      const cpc = 0.65;
+      const monthlyVisitors = Math.round(monthlyBudgetUsd / cpc);
+      const convRate = 3.2;
+      const monthlyCustomers = Math.max(1, Math.round(monthlyVisitors * (convRate / 100)));
+      const cac = Number((monthlyBudgetUsd / monthlyCustomers).toFixed(2));
+      const ltv = Number((productPriceUsd * 1.85).toFixed(2));
+      const ltvCacRatio = Number((ltv / cac).toFixed(2));
+      const monthlyRevenue = Math.round(monthlyCustomers * productPriceUsd);
+      const overhead = Math.round(monthlyRevenue * 0.12);
+      const netProfit = monthlyRevenue - monthlyBudgetUsd - overhead;
+      const breakEvenUnits = Math.ceil((monthlyBudgetUsd + overhead) / productPriceUsd);
+      const annualProjectedRevenue = Math.round(monthlyRevenue * 14.5);
+
+      const feasibility = {
+        productPriceUsd,
+        monthlyBudgetUsd,
+        monthlyVisitors,
+        monthlyCustomers,
+        cac,
+        ltv,
+        ltvCacRatio,
+        monthlyRevenue,
+        netProfit,
+        breakEvenUnits,
+        annualProjectedRevenue,
+        recommendationAr: `مؤشر LTV:CAC لمشروع (${projectName}) ممتاز (${ltvCacRatio}x). ننصح بإضافة باقة VIP بسعر $${Math.round(productPriceUsd * 2.2)} لرفع متوسط قيمة الطلب بنسبة 35%.`,
+        recommendationEn: `Your LTV:CAC ratio for (${projectName}) is strong (${ltvCacRatio}x). We recommend adding a VIP bundle at $${Math.round(productPriceUsd * 2.2)} to boost Average Order Value by 35%.`
+      };
+
+      const marketing = {
+        ads: [
+          {
+            platform: "Instagram & Snapchat Ads",
+            headline: siteLang === "en" ? `${projectName}: The #1 Choice in ${businessNiche}` : `${projectName}: الخيار الأول في ${businessNiche}`,
+            body: siteLang === "en"
+              ? `Looking for real results in ${businessNiche}?\nAt "${projectName}", we built a complete solution tailored for (${targetAudience}).\n✅ Starting at $${productPriceUsd}\n✅ Instant delivery & guaranteed quality\nOrder now via the link below!`
+              : `هل تبحث عن الأفضل في مجال ${businessNiche}؟\nفي "${projectName}" صممنا لك حلاً متكاملاً يلبي تطلعات (${targetAudience}) بجودة استثنائية وتنفيذ فوري.\n✅ باقات تبدأ من $${productPriceUsd}\n✅ ضمان جودة وخدمة فورية\nاطلب الآن عبر الرابط المباشر!`
+          }
+        ],
+        emails: [
+          {
+            day: siteLang === "en" ? "Day 1 (Welcome Email)" : "الرسالة 1 (ترحيب فوري)",
+            subject: siteLang === "en" ? `Welcome to ${projectName} – Your Next Step in ${businessNiche}` : `مرحباً بك في ${projectName} – خطوتك الأولى في ${businessNiche}`,
+            body: siteLang === "en"
+              ? `Hi ${customerName}, welcome to ${projectName}! Our solution in ${businessNiche} is designed specifically for (${targetAudience}) starting at $${productPriceUsd}.`
+              : `أهلاً بك ${customerName}، يسعدنا انضمامك إلى ${projectName}. لقد صممنا خدماتنا خصيصاً لـ (${targetAudience}) لتحقيق أعلى قيمة مقابل استثمارك ($${productPriceUsd}).`
+          }
+        ]
+      };
+
+      const n8nWorkflow = {
+        name: `${projectName} - Autonomous Sales & Fulfillment Workflow`,
+        nodes: [
+          { id: "webhook_intake", name: "Customer Order Webhook", type: "n8n-nodes-base.webhook", position: [240, 300] },
+          { id: "ai_classifier", name: "AI Lead Qualifier", type: "n8n-nodes-base.openAi", position: [520, 300] },
+          { id: "email_dispatch", name: "Instant Invoice Delivery", type: "n8n-nodes-base.emailSend", position: [800, 300] }
+        ]
+      };
+
+      const landingHtml = `<!DOCTYPE html>
+<html lang="${siteLang}" dir="${siteLang === 'en' ? 'ltr' : 'rtl'}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${projectName} | ${businessNiche}</title>
+  <script src="https://cdn.tailwindcss.com"><\/script>
+</head>
+<body class="bg-slate-950 text-white font-sans">
+  <header class="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between border-b border-slate-800">
+    <div class="text-2xl font-black text-cyan-400">${projectName}</div>
+    <a href="#order" class="px-5 py-2.5 rounded-xl bg-cyan-500 text-slate-950 font-bold text-sm">$${productPriceUsd}</a>
+  </header>
+  <main class="max-w-4xl mx-auto px-6 py-20 text-center space-y-8">
+    <span class="px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-bold">${targetAudience}</span>
+    <h1 class="text-4xl sm:text-6xl font-black leading-tight">${projectName} — <span class="text-cyan-400">${businessNiche}</span></h1>
+    <div id="order" class="pt-6">
+      <a href="#checkout" class="inline-block px-10 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-black text-lg shadow-xl">Get Started Now - $${productPriceUsd}</a>
+    </div>
+  </main>
+</body>
+</html>`;
+
+      currentGeneratedPackage = {
+        packageId,
+        licenseKey,
+        createdAt: new Date().toLocaleString(),
+        merchantPayPal: "pipohost@gmail.com",
+        planId,
+        planName: siteLang === "en" ? plan.nameEn : plan.nameAr,
+        amount: plan.price,
+        customerName,
+        customerEmail,
+        projectName,
+        businessNiche,
+        targetAudience,
+        feasibility,
+        marketing,
+        n8nWorkflow,
+        landingHtml
+      };
+
+      await fetch("/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(currentGeneratedPackage)
+      }).catch(() => {});
+
+      // حفظ دائم أيضاً في المتصفح لضمان عمل السجل على الاستضافات السحابية (Vercel Serverless)
+      const localOrders = JSON.parse(localStorage.getItem("veloza_real_orders") || "[]");
+      localOrders.unshift(currentGeneratedPackage);
+      localStorage.setItem("veloza_real_orders", JSON.stringify(localOrders));
+
+      renderDeliverablesView();
+    }
+
+    function switchDeliverableTab(tab) {
+      activeDeliverableTab = tab;
+      renderDeliverablesView();
+    }
+
+    function renderDeliverablesView() {
+      const area = document.getElementById("deliverables-output-area");
+      if (!currentGeneratedPackage) {
+        area.className = "lg:col-span-7 rounded-2xl border border-dashed border-slate-800 bg-slate-900/30 p-6 flex flex-col justify-center items-center text-center min-h-[460px]";
+        area.innerHTML = siteLang === "en" ? `
+          <div class="space-y-3 max-w-md">
+            <div class="text-4xl">📦</div>
+            <h3 class="text-base sm:text-lg font-bold text-white">Enter your project details on the left and click "Generate & Issue Complete Executive Suite"</h3>
+            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">You will immediately receive: <strong>1) Printable PDF Feasibility Report</strong>, <strong>2) Live Website Preview</strong>, and <strong>3) A 3-Step Beginner Usage Guide</strong>!</p>
+          </div>
+        ` : `
+          <div class="space-y-3 max-w-md">
+            <div class="text-4xl">📦</div>
+            <h3 class="text-base sm:text-lg font-bold text-white">أدخل بيانات مشروعك في النموذج المقابل واضغط على "توليد وإصدار الحزمة التنفيذية"</h3>
+            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">ستحصل فوراً على: <strong>1) تقرير PDF منسق للطباعة</strong>، <strong>2) معاينة حية لصفحة موقعك</strong>، و<strong>3) دليل مبسط من 3 خطوات لكيفية استخدام كل ملف</strong> بدون خبرة تقنية!</p>
+          </div>
+        `;
+        return;
+      }
+
+      const p = currentGeneratedPackage;
+      area.className = `lg:col-span-7 rounded-2xl bg-slate-900/80 border border-cyan-500/40 p-6 space-y-5 ${siteLang === 'en' ? 'text-left' : 'text-right'}`;
+
+      let tabContentHtml = "";
+      if (activeDeliverableTab === "guide") {
+        tabContentHtml = siteLang === "en" ? `
+          <div class="space-y-3 text-xs leading-relaxed">
+            <div class="p-4 rounded-xl bg-slate-950 border border-emerald-500/30 space-y-1.5">
+              <div class="font-bold text-emerald-400 text-sm">Step 1: Read Your PDF Study & Copy Ads (No Software Needed)</div>
+              <p class="text-slate-300">Click <strong>"🖨️ Printable PDF Report"</strong> above to save your formatted study on your phone or PC, and copy-paste your ads from tab 2 directly into Instagram, TikTok, or Snapchat!</p>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-950 border border-cyan-500/30 space-y-2">
+              <div class="font-bold text-cyan-400 text-sm">Step 2: Publish Your Website (Website.html) Online for Free in 30 Seconds</div>
+              <p class="text-slate-300">Click <strong>"👁️ Live Website Preview"</strong> to see your site now, download the HTML file, and drag-and-drop it onto <strong>Netlify Drop</strong> for instant free hosting!</p>
+              <a href="https://app.netlify.com/drop" target="_blank" class="inline-block px-3 py-1.5 rounded-lg bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 font-bold">🔗 Open Netlify Drop Free Hosting ↗</a>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-950 border border-violet-500/30 space-y-2">
+              <div class="font-bold text-violet-400 text-sm">Step 3: Import Your Automation File (n8n-Workflow.json)</div>
+              <p class="text-slate-300">Download the n8n JSON file above, open <strong>n8n.io</strong>, click <strong>Import from File</strong>, and your automation pipeline is ready!</p>
+              <a href="https://n8n.io" target="_blank" class="inline-block px-3 py-1.5 rounded-lg bg-violet-500/15 border border-violet-500/30 text-violet-300 font-bold">🔗 Open n8n Automation Platform ↗</a>
+            </div>
+          </div>
+        ` : `
+          <div class="space-y-3 text-xs leading-relaxed">
+            <div class="p-4 rounded-xl bg-slate-950 border border-emerald-500/30 space-y-1.5">
+              <div class="font-bold text-emerald-400 text-sm">الخطوة 1: كيف تقرأ دراسة الجدوى وتنسخ إعلاناتك؟ (بدون أي برامج)</div>
+              <p class="text-slate-300">اضغط على زر <strong>"🖨️ تقرير PDF للطباعة"</strong> بالأعلى ليفتح لك كتاب التقرير المنسق بالكامل جاهزاً للحفظ على جوالك أو جهازك. ومن تبويب <strong>"2. نسخ الإعلانات"</strong> انسخ الإعلان والصقه مباشرة في سناب شات أو إنستغرام!</p>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-950 border border-cyan-500/30 space-y-2">
+              <div class="font-bold text-cyan-400 text-sm">الخطوة 2: كيف تنشر صفحة موقعك (Website.html) على الإنترنت مجاناً في 30 ثانية؟</div>
+              <p class="text-slate-300">اضغط زر <strong>"👁️ معاينة موقعك مباشرة"</strong> لترى تصميم موقعك الآن، ثم حمّل ملف HTML واسحبه داخل موقع <strong>Netlify Drop</strong> المجاني ليعطيك رابط موقع شغال فوراً!</p>
+              <a href="https://app.netlify.com/drop" target="_blank" class="inline-block px-3 py-1.5 rounded-lg bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 font-bold">🔗 فتح موقع Netlify Drop المجاني لرفع صفحتك ↗</a>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-950 border border-violet-500/30 space-y-2">
+              <div class="font-bold text-violet-400 text-sm">الخطوة 3: كيف تشغّل ملف الأتمتة الآلي (n8n-Workflow.json)؟</div>
+              <p class="text-slate-300">حمّل ملف الأتمتة بالأعلى، وافتح حسابك في منصة <strong>n8n.io</strong> واضغط <strong>Import from File</strong> وستظهر لك منظومة الأتمتة جاهزة للعمل!</p>
+              <a href="https://n8n.io" target="_blank" class="inline-block px-3 py-1.5 rounded-lg bg-violet-500/15 border border-violet-500/30 text-violet-300 font-bold">🔗 فتح منصة n8n لاستيراد ملف الأتمتة ↗</a>
+            </div>
+          </div>
+        `;
+      } else if (activeDeliverableTab === "feasibility") {
+        tabContentHtml = `
+          <div class="space-y-4 text-xs">
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800"><span class="text-slate-400 block">CAC</span><span class="text-lg font-black text-cyan-400 font-mono">$${p.feasibility.cac}</span></div>
+              <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800"><span class="text-slate-400 block">LTV</span><span class="text-lg font-black text-emerald-400 font-mono">$${p.feasibility.ltv}</span></div>
+              <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800"><span class="text-slate-400 block">Break-Even</span><span class="text-lg font-black text-amber-300 font-mono">${p.feasibility.breakEvenUnits} sales/mo</span></div>
+              <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800"><span class="text-slate-400 block">Monthly Revenue</span><span class="text-lg font-black text-white font-mono">$${p.feasibility.monthlyRevenue.toLocaleString()}</span></div>
+              <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800"><span class="text-slate-400 block">Monthly Net Profit</span><span class="text-lg font-black text-emerald-400 font-mono">$${p.feasibility.netProfit.toLocaleString()}</span></div>
+              <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800"><span class="text-slate-400 block">12-Month Projection</span><span class="text-lg font-black text-violet-400 font-mono">$${p.feasibility.annualProjectedRevenue.toLocaleString()}</span></div>
+            </div>
+            <div class="p-4 rounded-xl bg-cyan-950/30 border border-cyan-500/30 text-cyan-200 leading-relaxed">
+              ${siteLang === "en" ? p.feasibility.recommendationEn : p.feasibility.recommendationAr}
+            </div>
+          </div>
+        `;
+      } else if (activeDeliverableTab === "marketing") {
+        tabContentHtml = `
+          <div class="space-y-3 max-h-[320px] overflow-y-auto text-xs">
+            ${p.marketing.ads.map(ad => `
+              <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
+                <span class="text-cyan-400 font-bold">${ad.platform}</span>
+                <div class="font-bold text-white">${ad.headline}</div>
+                <p class="text-slate-300 whitespace-pre-line">${ad.body}</p>
+              </div>
+            `).join("")}
+            ${p.marketing.emails.map(em => `
+              <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
+                <span class="text-violet-400 font-bold">${em.day}</span>
+                <div class="font-bold text-white">${em.subject}</div>
+                <p class="text-slate-300">${em.body}</p>
+              </div>
+            `).join("")}
+          </div>
+        `;
+      } else if (activeDeliverableTab === "automation") {
+        tabContentHtml = `<pre dir="ltr" class="p-4 rounded-xl bg-slate-950 border border-slate-800 text-[11px] text-emerald-300 font-mono overflow-x-auto max-h-[320px] text-left">${JSON.stringify(p.n8nWorkflow, null, 2)}</pre>`;
+      } else {
+        tabContentHtml = `<pre dir="ltr" class="p-4 rounded-xl bg-slate-950 border border-slate-800 text-[11px] text-cyan-300 font-mono overflow-x-auto max-h-[320px] text-left">${p.landingHtml.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</pre>`;
+      }
+
+      area.innerHTML = `
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+          <div>
+            <div class="text-xs font-mono text-cyan-400">${p.packageId}</div>
+            <h3 class="text-base sm:text-lg font-black text-white mt-0.5">${p.projectName}</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button onclick="openPrintablePdfReport()" class="px-3 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs shadow">${siteLang === 'en' ? '🖨️ Printable PDF Report' : '🖨️ تقرير PDF للطباعة'}</button>
+            <button onclick="openLiveWebsitePreview()" class="px-3 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-xs shadow">${siteLang === 'en' ? '👁️ Live Website Preview' : '👁️ معاينة موقعك مباشرة'}</button>
+            <button onclick="downloadDeliverable('html')" class="px-3 py-2 rounded-xl bg-violet-500/15 border border-violet-500/30 text-violet-300 font-bold text-xs">📥 Website (HTML)</button>
+            <button onclick="downloadDeliverable('n8n')" class="px-3 py-2 rounded-xl bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 font-bold text-xs">📥 n8n (JSON)</button>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-2 border-b border-slate-800 pb-3 text-xs font-bold">
+          <button onclick="switchDeliverableTab('guide')" class="px-3.5 py-2 rounded-xl ${activeDeliverableTab === 'guide' ? 'bg-amber-400 text-slate-950' : 'bg-slate-950 text-amber-300 border border-amber-500/30'}">${siteLang === 'en' ? '🧭 3-Step Usage Guide' : '🧭 كيف تستخدم ملفاتك (3 خطوات)'}</button>
+          <button onclick="switchDeliverableTab('feasibility')" class="px-3.5 py-2 rounded-xl ${activeDeliverableTab === 'feasibility' ? 'bg-cyan-500 text-slate-950' : 'bg-slate-950 text-slate-300'}">${siteLang === 'en' ? '1. Feasibility Study' : '1. دراسة الجدوى'}</button>
+          <button onclick="switchDeliverableTab('marketing')" class="px-3.5 py-2 rounded-xl ${activeDeliverableTab === 'marketing' ? 'bg-cyan-500 text-slate-950' : 'bg-slate-950 text-slate-300'}">${siteLang === 'en' ? '2. Ad Campaigns' : '2. نسخ الإعلانات'}</button>
+          <button onclick="switchDeliverableTab('automation')" class="px-3.5 py-2 rounded-xl ${activeDeliverableTab === 'automation' ? 'bg-cyan-500 text-slate-950' : 'bg-slate-950 text-slate-300'}">3. n8n JSON</button>
+          <button onclick="switchDeliverableTab('landing')" class="px-3.5 py-2 rounded-xl ${activeDeliverableTab === 'landing' ? 'bg-cyan-500 text-slate-950' : 'bg-slate-950 text-slate-300'}">4. HTML Code</button>
+        </div>
+
+        ${tabContentHtml}
+      `;
+    }
+
+    function openLiveWebsitePreview() {
+      if (!currentGeneratedPackage) return;
+      const blob = new Blob([currentGeneratedPackage.landingHtml], { type: "text/html;charset=utf-8" });
+      window.open(URL.createObjectURL(blob), "_blank");
+    }
+
+    function openPrintablePdfReport() {
+      if (!currentGeneratedPackage) return;
+      const p = currentGeneratedPackage;
+      const f = p.feasibility;
+      const reportHtml = `<!DOCTYPE html>
+<html lang="${siteLang}" dir="${siteLang === 'en' ? 'ltr' : 'rtl'}">
+<head>
+  <meta charset="UTF-8" />
+  <title>Veloza Executive Report - ${p.projectName}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Cairo', sans-serif; color: #0f172a; background: #fff; max-width: 880px; margin: 0 auto; padding: 36px 24px; line-height: 1.7; }
+    h1 { font-size: 24px; margin: 6px 0; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+    .card { border: 1px solid #cbd5e1; border-radius: 10px; padding: 12px; background: #f8fafc; }
+    .val { font-size: 19px; font-weight: 900; color: #0f172a; }
+    .btn { background: #0284c7; color: #fff; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; }
+    @media print { .no-print { display: none !important; } }
+  </style>
+</head>
+<body>
+  <div class="no-print" style="margin-bottom:16px;"><button class="btn" onclick="window.print()">🖨️ Print / Save as PDF</button></div>
+  <h1>${p.projectName} (${p.businessNiche})</h1>
+  <div>Client: ${p.customerName} | License: ${p.licenseKey}</div>
+  <div class="grid">
+    <div class="card"><div>CAC</div><div class="val">$${f.cac}</div></div>
+    <div class="card"><div>LTV</div><div class="val">$${f.ltv}</div></div>
+    <div class="card"><div>Break-Even</div><div class="val">${f.breakEvenUnits} sales/mo</div></div>
+    <div class="card"><div>Monthly Revenue</div><div class="val">$${f.monthlyRevenue.toLocaleString()}</div></div>
+    <div class="card"><div>Net Profit</div><div class="val">$${f.netProfit.toLocaleString()}</div></div>
+    <div class="card"><div>12-Mo Revenue</div><div class="val">$${f.annualProjectedRevenue.toLocaleString()}</div></div>
+  </div>
+</body>
+</html>`;
+      const blob = new Blob([reportHtml], { type: "text/html;charset=utf-8" });
+      window.open(URL.createObjectURL(blob), "_blank");
+    }
+
+    function downloadDeliverable(type) {
+      if (!currentGeneratedPackage) return;
+      let content = type === "n8n" ? JSON.stringify(currentGeneratedPackage.n8nWorkflow, null, 2) : currentGeneratedPackage.landingHtml;
+      let filename = type === "n8n" ? `${currentGeneratedPackage.packageId}-n8n.json` : `${currentGeneratedPackage.packageId}-Website.html`;
+      let mime = type === "n8n" ? "application/json" : "text/html;charset=utf-8";
+      const blob = new Blob([content], { type: mime });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    async function loadRealLedgerFromServer() {
+      let transactions = [];
+      try {
+        const res = await fetch("/api/ledger", { cache: "no-store" });
+        const data = await res.json();
+        if (data && Array.isArray(data.transactions) && data.transactions.length > 0) {
+          transactions = data.transactions;
+        }
+      } catch (e) {}
+
+      if (transactions.length === 0) {
+        transactions = JSON.parse(localStorage.getItem("veloza_real_orders") || "[]");
+      }
+
+      const totalRevenue = transactions.reduce((sum, tx) => sum + Number(tx.amount || 0), 0);
+
+      document.getElementById("real-revenue-amount").innerText = "$" + Number(totalRevenue).toLocaleString("en-US", { minimumFractionDigits: 2 });
+      document.getElementById("real-orders-count").innerText = transactions.length;
+      document.getElementById("ledger-status-badge").innerText = `${transactions.length} Verified Orders`;
+      const listEl = document.getElementById("real-transactions-list");
+      listEl.innerHTML = (transactions.length === 0)
+        ? `<div class="p-4 text-center text-xs text-slate-400">Clean Ledger ($0.00)</div>`
+        : transactions.map(tx => `<div class="p-3 rounded-xl bg-slate-900 border border-emerald-500/30 flex items-center justify-between text-xs"><div><strong class="text-emerald-400 font-mono">+$${tx.amount}.00</strong> • ${tx.projectName} (${tx.customerName})</div><span class="text-slate-400 font-mono">${tx.packageId}</span></div>`).join("");
+    }
+
+    async function resetRealLedgerOnServer() {
+      localStorage.removeItem("veloza_real_orders");
+      await fetch("/api/ledger/reset", { method: "POST" }).catch(() => {});
+      await loadRealLedgerFromServer();
+    }
+
+    function renderInitialBotWelcome() {
+      const msgs = document.getElementById("chat-messages");
+      if (siteLang === "en") {
+        document.getElementById("chatbot-wrapper").setAttribute("dir", "ltr");
+        document.getElementById("bot-header-title").innerText = "🤖 Veloza Smart AI Advisor";
+        document.getElementById("bot-header-sub").innerText = "Online • Instant Bilingual Support (EN / AR)";
+        document.getElementById("bot-lang-btn").innerText = "🇸🇦 عربي";
+        document.getElementById("chat-input").placeholder = "Ask anything about Veloza, services, or pricing...";
+        document.getElementById("chat-send-btn").innerText = "Send";
+        msgs.innerHTML = `
+          <div class="bg-slate-900 border border-slate-800 text-slate-200 p-3.5 rounded-2xl space-y-2.5 text-left">
+            <p>Welcome to <strong>Veloza Enterprise OS</strong>! 👋⚡<br/>Ask me anything in <strong>English or Arabic</strong>:</p>
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              <button onclick="askQuickQuestion('What is Veloza & what services do you offer?')" class="px-2.5 py-1.5 rounded-lg bg-slate-950 border border-cyan-500/30 text-cyan-300">What is Veloza?</button>
+              <button onclick="askQuickQuestion('How do I use the delivered files?')" class="px-2.5 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-slate-300">How to use files?</button>
+              <button onclick="askQuickQuestion('Show Pricing Plans ($9 / $19 / $39)')" class="px-2.5 py-1.5 rounded-lg bg-slate-950 border border-emerald-500/30 text-emerald-300">Pricing ($9 - $39)</button>
+              <button onclick="askQuickQuestion('Is payment secure & guaranteed?')" class="px-2.5 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-slate-300">Security & Refund</button>
+            </div>
+          </div>
+        `;
+      } else {
+        document.getElementById("chatbot-wrapper").setAttribute("dir", "rtl");
+        document.getElementById("bot-header-title").innerText = "🤖 مستشار Veloza الذكي (عربي / EN)";
+        document.getElementById("bot-header-sub").innerText = "متصل الآن • يجيب فوراً بالعربية والإنجليزية";
+        document.getElementById("bot-lang-btn").innerText = "🇬🇧 EN";
+        document.getElementById("chat-input").placeholder = "اسأل بالعربية أو الإنجليزية عن أي شيء في الموقع...";
+        document.getElementById("chat-send-btn").innerText = "إرسال";
+        msgs.innerHTML = `
+          <div class="bg-slate-900 border border-slate-800 text-slate-200 p-3.5 rounded-2xl space-y-2.5 text-right">
+            <p>مرحباً بك في <strong>منصة Veloza</strong>! 👋⚡<br/>أنا مستشارك الذكي ثنائي اللغة. اسألني عن أي شيء داخل الموقع:</p>
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              <button onclick="askQuickQuestion('ما هي منصة Veloza وما هي خدماتها الأربع؟')" class="px-2.5 py-1.5 rounded-lg bg-slate-950 border border-cyan-500/30 text-cyan-300">ما هي Veloza؟</button>
+              <button onclick="askQuickQuestion('كيف وأين أستخدم ملفاتي بعد الشراء؟')" class="px-2.5 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-slate-300">كيف أستخدم الملفات؟</button>
+              <button onclick="askQuickQuestion('استعراض الباقات الاقتصادية ($9 / $19 / $39)')" class="px-2.5 py-1.5 rounded-lg bg-slate-950 border border-emerald-500/30 text-emerald-300">الباقات ($9 - $39)</button>
+              <button onclick="askQuickQuestion('ما هي ضمانات الحماية واسترداد الأموال؟')" class="px-2.5 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-slate-300">الضمان والحماية 🛡️</button>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function toggleChat() {
+      document.getElementById("chatbot-window").classList.toggle("hidden");
+    }
+
+    function askQuickQuestion(q) {
+      document.getElementById("chat-input").value = q;
+      sendChatMessage(new Event("submit"));
+    }
+
+    function sendChatMessage(e) {
+      if (e.preventDefault) e.preventDefault();
+      const input = document.getElementById("chat-input");
+      const text = input.value.trim();
+      if (!text) return;
+      const msgs = document.getElementById("chat-messages");
+
+      const enChars = (text.match(/[a-zA-Z]/g) || []).length;
+      const arChars = (text.match(/[\u0600-\u06FF]/g) || []).length;
+      const isEn = enChars > arChars;
+
+      msgs.innerHTML += `<div class="bg-cyan-600 text-white p-3 rounded-2xl w-fit ${isEn ? 'ml-auto' : 'mr-auto'}">${text}</div>`;
+      input.value = "";
+
+      const q = text.toLowerCase();
+      let replyHtml = "";
+
+      if (isEn) {
+        if (q.includes("what is") || q.includes("about") || q.includes("service")) {
+          replyHtml = `<p class="font-bold text-cyan-400">About Veloza & Our 4 Core Services:</p><p>Veloza builds and delivers 4 custom business & tech deliverables in seconds:<br/>1️⃣ <strong>Financial Feasibility & Unit Economics (PDF)</strong><br/>2️⃣ <strong>Ready-to-Launch Ad Campaigns & Emails</strong><br/>3️⃣ <strong>n8n & Make.com Automation Blueprint (JSON)</strong><br/>4️⃣ <strong>Complete Landing Page Website Code (HTML+Tailwind)</strong></p>`;
+        } else if (q.includes("how") || q.includes("use") || q.includes("file")) {
+          replyHtml = `<p class="font-bold text-amber-300">🧭 How to use your files (0% Tech Skills Needed):</p><p>• <strong>PDF Report & Ads:</strong> Click 'Print PDF' to save your study & copy-paste ads into Instagram/Snapchat.<br/>• <strong>Website (HTML):</strong> Drag & drop onto <em>app.netlify.com/drop</em> to publish online for free in 30s!<br/>• <strong>Automation (JSON):</strong> Import directly into <em>n8n.io</em> with 1 click.</p>`;
+        } else if (q.includes("secure") || q.includes("refund") || q.includes("trust")) {
+          replyHtml = `<p class="font-bold text-emerald-400">🛡️ 100% Security & Buyer Protection:</p><p>• Official PayPal Checkout with full Buyer Protection.<br/>• 256-Bit SSL Encryption for complete data privacy.<br/>• Instant Digital Delivery + 14-Day Money-Back Guarantee.</p>`;
+        } else {
+          replyHtml = `<p class="font-bold text-cyan-400">Affordable One-Time Pricing Plans:</p><p>• <strong>$9 Starter Launch:</strong> Feasibility PDF + Ads + Emails.<br/>• <strong>$19 Growth & Automation Pro (Best Seller):</strong> All 4 Services including n8n JSON + HTML Website!<br/>• <strong>$39 Agency VIP:</strong> Full Suite + Commercial Resell Rights.</p>`;
+        }
+        replyHtml += `<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=pipohost%40gmail.com&item_name=Veloza+Growth+Pro+Suite&amount=19.00&currency_code=USD" target="_blank" class="block text-center py-2.5 mt-2 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-black">💳 Checkout via PayPal ($19 Pro Suite)</a>`;
+      } else {
+        if (q.includes("ما هي") || q.includes("ما هو") || q.includes("خدمات") || q.includes("عن")) {
+          replyHtml = `<p class="font-bold text-cyan-400">عن منصة Veloza وخدماتها الأربع:</p><p>تمنحك Veloza فور الدفع 4 منظومات حقيقية مخصصة لمشروعك:<br/>1️⃣ <strong>دراسة جدوى اقتصادية ومالية (PDF للطباعة)</strong><br/>2️⃣ <strong>حملات إعلانية جاهزة للنسخ (سناب، إنستغرام، تيك توك)</strong><br/>3️⃣ <strong>ملف أتمتة جاهز للاستيراد في n8n و Make</strong><br/>4️⃣ <strong>كود موقع صفحة هبوط جاهز للنشر المجاني (HTML)</strong></p>`;
+        } else if (q.includes("كيف") || q.includes("أين") || q.includes("اين") || q.includes("ملفات")) {
+          replyHtml = `<p class="font-bold text-amber-300">🧭 كيف وأين تستخدم ملفاتك في 3 خطوات بسيطة:</p><p>1. <strong>تقرير PDF والإعلانات:</strong> تضغط زر (طباعة PDF) لحفظ الدراسة على جهازك، وتنسخ الإعلانات بضغطة زر.<br/>2. <strong>كود الموقع (HTML):</strong> ترفعه بالسحب والإفلات مجاناً في موقع <em>Netlify Drop</em> خلال 30 ثانية!<br/>3. <strong>ملف الأتمتة (JSON):</strong> تستورده عبر Import from File في موقع <em>n8n.io</em>.</p>`;
+        } else if (q.includes("ضمان") || q.includes("حماية") || q.includes("ثقة") || q.includes("امان")) {
+          replyHtml = `<p class="font-bold text-emerald-400">🛡️ ضمانات الثقة والحماية الكاملة:</p><p>• دفع مشفر وموثق عبر PayPal مع حماية المشتري 100%.<br/>• تشفير بنكي 256-Bit SSL لسرية بيانات مشروعك.<br/>• تسليم رقمي فوري في نفس اللحظة + ضمان استرداد 14 يوماً.</p>`;
+        } else {
+          replyHtml = `<p class="font-bold text-cyan-400">الباقات الاقتصادية الخفيفة (دفعة واحدة فقط):</p><p>• <strong>باقة البداية ($9 فقط):</strong> دراسة جدوى PDF + إعلانات + رسائل بريدية.<br/>• <strong>باقة النمو الشاملة ($19 فقط - الأكثر مبيعاً):</strong> تشمل الخدمات الأربع كاملة (+ ملف أتمتة n8n + كود موقع HTML)!<br/>• <strong>باقة الوكالات ($39 فقط):</strong> شاملة + رخصة إعادة بيع تجاري للعملاء.</p>`;
+        }
+        replyHtml += `<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=pipohost%40gmail.com&item_name=Veloza+Growth+Pro+Suite&amount=19.00&currency_code=USD" target="_blank" class="block text-center py-2.5 mt-2 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-black">💳 اشترِ الباقة الشاملة عبر PayPal ($19 فقط)</a>`;
+      }
+
+      setTimeout(() => {
+        msgs.innerHTML += `<div class="bg-slate-900 border border-slate-800 text-slate-200 p-3.5 rounded-2xl space-y-2">${replyHtml}</div>`;
+        msgs.scrollTop = msgs.scrollHeight;
+      }, 220);
+    }
+
+    // التشغيل الأولي للموقع
+    applySiteLanguage();
+  </script>
+</body>
+</html>
