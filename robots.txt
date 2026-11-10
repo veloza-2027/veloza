@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://veloza-2027.github.io/veloza/sitemap.xml
+Sitemap: https://www.veloza-ai.online/sitemap.xml
