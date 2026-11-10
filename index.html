@@ -99,52 +99,7 @@
     </div>
   </div>
 
-  <!-- نافذة بوابة المالك السرية المحمية بكلمة مرور -->
-  <div id="owner-secret-modal" class="hidden fixed inset-0 z-50 bg-black/85 backdrop-blur-xl flex items-center justify-center p-4 overflow-y-auto">
-    <div class="w-full max-w-4xl rounded-3xl bg-[#090D16] border border-amber-400/40 p-6 sm:p-8 space-y-6 shadow-2xl my-8">
-      <div class="flex items-center justify-between border-b border-slate-800 pb-4">
-        <div class="flex items-center gap-3">
-          <span class="text-2xl">👑</span>
-          <div>
-            <h3 class="text-lg font-black text-white" data-i18n="ownerVaultTitle">بوابة الإدارة الخاصة بالمالك (Owner Private Vault)</h3>
-            <p class="text-xs text-slate-400" data-i18n="ownerVaultSub">هذه البوابة معزولة تماماً عن واجهة العملاء ومحمية برمز سري</p>
-          </div>
-        </div>
-        <button onclick="closeOwnerVault()" class="px-3 py-1.5 rounded-xl bg-slate-900 text-slate-300 hover:text-white text-xs font-bold">✕</button>
-      </div>
-
-      <div id="owner-pin-screen" class="max-w-sm mx-auto py-8 text-center space-y-4">
-        <div class="text-xs text-slate-300" data-i18n="ownerPinPrompt">أدخل الرمز السري للمالك (2026) لفتح سجل الأرباح:</div>
-        <input id="owner-pin-input" type="password" dir="ltr" placeholder="PIN (2026)" class="w-full rounded-xl bg-slate-950 border border-slate-800 px-4 py-3 text-center text-white font-mono" />
-        <button onclick="verifyOwnerPin()" class="w-full py-3 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-black text-xs sm:text-sm" data-i18n="ownerUnlockBtn">فتح سجل المالك السري 🔓</button>
-      </div>
-
-      <div id="owner-unlocked-content" class="hidden space-y-6">
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div class="p-5 rounded-2xl bg-slate-900 border border-emerald-500/30">
-            <div class="text-xs text-emerald-300 font-bold mb-1">Total Verified Revenue</div>
-            <div id="real-revenue-amount" class="text-3xl font-black text-white font-mono" dir="ltr">$0.00</div>
-            <div class="text-[11px] text-slate-400 mt-1">PayPal: pipohost@gmail.com</div>
-          </div>
-          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800">
-            <div class="text-xs text-slate-400 font-bold mb-1">Fulfilled Orders</div>
-            <div id="real-orders-count" class="text-3xl font-black text-cyan-400 font-mono" dir="ltr">0</div>
-            <div id="ledger-status-badge" class="text-[11px] text-slate-400 mt-1">0 Orders</div>
-          </div>
-          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between">
-            <div class="text-xs text-slate-400 font-bold">Ledger Controls</div>
-            <div class="flex gap-2 pt-2">
-              <button onclick="loadRealLedgerFromServer()" class="flex-1 py-2 rounded-lg bg-slate-800 text-xs font-bold text-white">🔄 Refresh</button>
-              <button onclick="resetRealLedgerOnServer()" class="flex-1 py-2 rounded-lg bg-rose-500/15 border border-rose-500/30 text-xs font-bold text-rose-300">Reset ($0.00)</button>
-            </div>
-          </div>
-        </div>
-        <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-3 max-h-[260px] overflow-y-auto">
-          <div id="real-transactions-list" class="space-y-2"></div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- لوحة تحكم المالك أُزيلت بالكامل من واجهة الموقع العام (متاحة فقط في نسخة Next.js المحمية على /admin) -->
 
   <!-- خلفية شبكية مضيئة -->
   <div class="fixed inset-0 z-0 pointer-events-none">
@@ -309,8 +264,24 @@
           بوابة تخصيص وبناء الحزمة التنفيذية لمشروعك
         </h2>
         <p class="text-xs sm:text-sm text-slate-400 mt-1" data-i18n="builderSub">
-          أدخل بيانات مشروعك الحقيقية لاستلام التقرير القابل للطباعة PDF، معاينة موقعك الجاهز، ودليل الاستخدام خطوة بخطوة.
+          أدخل بيانات مشروعك، أكمل الدفع، وسيصلك بريد احترافي يحمل شعار Veloza والختم الإداري مع كل ملفاتك (PDF + إعلانات + JSON + كود الموقع) فوراً — والتسليم متاح على الشاشة أيضاً.
         </p>
+      </div>
+
+      <!-- شريط الخطوات الثلاث: بيانات ← دفع ← تسليم فوري بالبريد -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div class="flex items-center gap-3 rounded-2xl bg-slate-900/70 border border-slate-800 px-4 py-3">
+          <span class="w-8 h-8 shrink-0 rounded-full bg-cyan-500/15 border border-cyan-500/40 text-cyan-300 font-black flex items-center justify-center text-sm">1</span>
+          <span class="text-xs font-bold text-slate-200" data-i18n="step1">أدخل بيانات مشروعك</span>
+        </div>
+        <div class="flex items-center gap-3 rounded-2xl bg-slate-900/70 border border-slate-800 px-4 py-3">
+          <span class="w-8 h-8 shrink-0 rounded-full bg-amber-500/15 border border-amber-500/40 text-amber-300 font-black flex items-center justify-center text-sm">2</span>
+          <span class="text-xs font-bold text-slate-200" data-i18n="step2">ادفع بأمان عبر PayPal</span>
+        </div>
+        <div class="flex items-center gap-3 rounded-2xl bg-slate-900/70 border border-slate-800 px-4 py-3">
+          <span class="w-8 h-8 shrink-0 rounded-full bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 font-black flex items-center justify-center text-sm">3</span>
+          <span class="text-xs font-bold text-slate-200" data-i18n="step3">تسليم فوري على بريدك + على الشاشة</span>
+        </div>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -369,12 +340,16 @@
 
           <div class="space-y-2.5 pt-2">
             <a id="dynamic-paypal-link" href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=pipohost%40gmail.com&item_name=Veloza+-+Growth+and+Automation+Pro+Suite&item_number=growth-pro&amount=19.00&currency_code=USD&no_shipping=1" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-black text-xs sm:text-sm shadow-lg flex items-center justify-center gap-2 transition">
-              <span>💳 الدفع المباشر عبر PayPal ($19 فقط)</span>
+              <span>💳 2. ادفع الآن بأمان عبر PayPal ($19 فقط)</span>
             </a>
 
             <button type="submit" class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 hover:from-cyan-400 hover:to-violet-500 text-white font-bold text-xs sm:text-sm shadow-lg transition" data-i18n="btnGenerateNow">
-              ⚡ توليد وإصدار الحزمة التنفيذية الكاملة الآن
+              3. دفعتُ بالفعل — استلم حزمتي الآن ⚡
             </button>
+
+            <p class="text-[11px] text-slate-400 leading-relaxed text-center" data-i18n="builderNote">
+              بعد إتمام الدفع في نافذة PayPal، ارجع لهذه الصفحة وأدخل رقم عملية الدفع (Transaction ID) ليتحقق النظام ويُرسل حزمتك كاملة إلى بريدك فوراً.
+            </p>
           </div>
         </form>
 
@@ -383,14 +358,13 @@
     </section>
   </main>
 
-  <!-- تذييل الموقع الرسمي للعملاء + زر سري صغير في الزاوية لبوابة المالك المحمية -->
+  <!-- تذييل الموقع الرسمي للعملاء (بدون أي رابط إداري) -->
   <footer class="relative z-10 max-w-7xl mx-auto px-6 mt-24 pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-    <div data-i18n="footerRights">© 2026 Veloza Enterprise OS. جميع الحقوق محفوظة • مدفوعات آمنة ومحمية عبر PayPal.</div>
-    <div class="flex items-center gap-4">
+    <div class="text-center sm:text-start" data-i18n="footerRights">© 2026 Veloza Enterprise OS. جميع الحقوق محفوظة • مدفوعات آمنة ومحمية عبر PayPal.</div>
+    <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+      <a href="mailto:veloza.admin@gmail.com" class="text-cyan-300 hover:text-cyan-200 font-semibold transition" dir="ltr">📧 veloza.admin@gmail.com</a>
       <span class="text-emerald-400/90 font-semibold">🔒 256-Bit SSL & PayPal Buyer Protection</span>
-      <button onclick="openOwnerVault()" class="text-slate-600 hover:text-slate-400 transition" data-i18n="footerOwnerBtn">
-        🔒 بوابة الإدارة
-      </button>
+      <span class="text-slate-400" data-i18n="footerRefund">↩️ ضمان استرداد 14 يوماً</span>
     </div>
   </footer>
 
@@ -468,7 +442,10 @@
         pricingSub: "دفعة واحدة فقط عبر بوابة PayPal الرسمية المحمية بدون أي التزامات أو اشتراكات شهرية.",
         builderBadge: "محرك التخصيص والتسليم الفوري (Real Deliverables Generator)",
         builderTitle: "بوابة تخصيص وبناء الحزمة التنفيذية لمشروعك",
-        builderSub: "أدخل بيانات مشروعك الحقيقية لاستلام التقرير القابل للطباعة PDF، معاينة موقعك الجاهز، ودليل الاستخدام خطوة بخطوة.",
+        builderSub: "أدخل بيانات مشروعك، أكمل الدفع، وسيصلك بريد احترافي يحمل شعار Veloza والختم الإداري مع كل ملفاتك فوراً.",
+        step1: "أدخل بيانات مشروعك",
+        step2: "ادفع بأمان عبر PayPal",
+        step3: "تسليم فوري على بريدك + على الشاشة",
         formHeader: "1. أدخل بيانات المشروع والباقة",
         lblCustomer: "اسم العميل / المؤسس *",
         lblEmail: "البريد الإلكتروني *",
@@ -478,9 +455,10 @@
         lblPrice: "متوسط سعر منتجك ($ USD)",
         lblBudget: "ميزانية التسويق الشهرية ($)",
         lblPlan: "الباقة الاقتصادية المختارة",
-        btnGenerateNow: "⚡ توليد وإصدار الحزمة التنفيذية الكاملة الآن",
+        btnGenerateNow: "3. دفعتُ بالفعل — استلم حزمتي الآن ⚡",
+        builderNote: "بعد إتمام الدفع في نافذة PayPal، ارجع لهذه الصفحة وأدخل رقم عملية الدفع (Transaction ID) ليتحقق النظام ويُرسل حزمتك كاملة إلى بريدك فوراً.",
+        footerRefund: "↩️ ضمان استرداد 14 يوماً",
         footerRights: "© 2026 Veloza Enterprise OS. جميع الحقوق محفوظة • مدفوعات آمنة ومحمية عبر PayPal.",
-        footerOwnerBtn: "🔒 بوابة الإدارة"
       },
       en: {
         langSwitchBtn: "🇸🇦 العربية",
@@ -520,7 +498,10 @@
         pricingSub: "One-time payment via official PayPal Checkout with 0% recurring hidden fees.",
         builderBadge: "Real Deliverables Customization Engine",
         builderTitle: "Customize & Build Your Project Executive Suite",
-        builderSub: "Enter your real project details to receive your Printable PDF Report, Live Website Preview, n8n Workflow, and 3-Step Usage Guide.",
+        builderSub: "Enter your project details, complete payment, and receive a branded professional email (Veloza logo + official seal) with all your files instantly.",
+        step1: "Enter your project details",
+        step2: "Pay securely via PayPal",
+        step3: "Instant delivery to your inbox + on screen",
         formHeader: "1. Enter Your Project Details & Package",
         lblCustomer: "Client / Founder Name *",
         lblEmail: "Email Address *",
@@ -530,9 +511,10 @@
         lblPrice: "Average Product Price ($ USD)",
         lblBudget: "Monthly Marketing Budget ($)",
         lblPlan: "Selected Package",
-        btnGenerateNow: "⚡ Generate & Issue Complete Executive Suite Now",
+        btnGenerateNow: "3. I Have Paid — Deliver My Package Now ⚡",
+        builderNote: "After completing payment in the PayPal window, return here and enter your PayPal Transaction ID so we can verify it and email your complete package instantly.",
+        footerRefund: "↩️ 14-Day Money-Back Guarantee",
         footerRights: "© 2026 Veloza Enterprise OS. All rights reserved • Protected by PayPal Checkout.",
-        footerOwnerBtn: "🔒 Admin Vault"
       }
     };
 
@@ -903,22 +885,257 @@
       if (gate) gate.classList.add("hidden");
     }
 
-    function openOwnerVault() {
-      document.getElementById("owner-secret-modal").classList.remove("hidden");
+    // ============================================================================
+    //  EMAIL DELIVERY ENGINE — إرسال الحزمة الكاملة إلى بريد العميل تلقائياً
+    //  يعمل عبر EmailJS (مفاتيح عامة آمنة للنشر في صفحة ثابتة)
+    //  ضع القيم الثلاثة أدناه لتفعيل الإرسال الفوري:
+    // ============================================================================
+    const VELOZA_EMAIL = {
+      publicKey: "REPLACE_PUBLIC_KEY",
+      serviceId: "REPLACE_SERVICE_ID",
+      templateId: "REPLACE_TEMPLATE_ID",
+      ownerEmail: "veloza.admin@gmail.com",
+      siteUrl: "https://veloza-2027.github.io/veloza/",
+      logoUrl: "https://veloza-2027.github.io/veloza/veloza-logo.png",
+      stampUrl: "https://veloza-2027.github.io/veloza/veloza-stamp.png"
+    };
+
+    function isEmailConfigured() {
+      return VELOZA_EMAIL.publicKey.indexOf("REPLACE") !== 0
+        && VELOZA_EMAIL.serviceId.indexOf("REPLACE") !== 0
+        && VELOZA_EMAIL.templateId.indexOf("REPLACE") !== 0;
     }
 
-    function closeOwnerVault() {
-      document.getElementById("owner-secret-modal").classList.add("hidden");
+    function esc(v) {
+      return String(v == null ? "" : v)
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
     }
 
-    function verifyOwnerPin() {
-      const pin = document.getElementById("owner-pin-input").value.trim();
-      if (pin === "2026" || pin.toLowerCase() === "veloza") {
-        document.getElementById("owner-pin-screen").classList.add("hidden");
-        document.getElementById("owner-unlocked-content").classList.remove("hidden");
-        loadRealLedgerFromServer();
-      } else {
-        alert(siteLang === "en" ? "Incorrect PIN! Default Owner PIN is: 2026" : "الرمز غير صحيح! الرمز الافتراضي للمالك هو: 2026");
+    function money(v) {
+      return "$" + Number(v || 0).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function buildDeliveryEmailHtml(p) {
+      const f = p.feasibility;
+      const rows = [
+        ["CAC (تكلفة استحواذ العميل)", money(f.cac)],
+        ["LTV (القيمة الدائمة للعميل)", money(f.ltv)],
+        ["نسبة LTV : CAC", f.ltvCacRatio + "x"],
+        ["نقطة التعادل الشهرية", f.breakEvenUnits + " مبيعة / شهر"],
+        ["الإيراد الشهري المتوقع", money(f.monthlyRevenue)],
+        ["صافي الربح الشهري المتوقع", money(f.netProfit)],
+        ["توقعات الإيراد لـ 12 شهراً", money(f.annualProjectedRevenue)]
+      ].map(r => `
+        <tr>
+          <td style="padding:10px 14px;border-bottom:1px solid #e5e7eb;font-size:13px;color:#334155;text-align:right">${esc(r[0])}</td>
+          <td style="padding:10px 14px;border-bottom:1px solid #e5e7eb;font-size:13px;font-weight:700;color:#0f172a;text-align:left;font-family:Consolas,monospace">${esc(r[1])}</td>
+        </tr>`).join("");
+
+      const ads = p.marketing.ads.map(a => `
+        <div style="border:1px solid #e2e8f0;border-radius:10px;padding:14px;margin:10px 0;background:#f8fafc">
+          <div style="font-size:12px;font-weight:700;color:#0891b2;margin-bottom:6px">${esc(a.platform)}</div>
+          <div style="font-size:13px;font-weight:700;color:#0f172a;margin-bottom:6px">${esc(a.headline)}</div>
+          <div style="font-size:13px;color:#334155;white-space:pre-line;line-height:1.8">${esc(a.body)}</div>
+        </div>`).join("");
+
+      const mails = p.marketing.emails.map(m => `
+        <div style="border:1px solid #e2e8f0;border-radius:10px;padding:14px;margin:10px 0;background:#f8fafc">
+          <div style="font-size:12px;font-weight:700;color:#7c3aed;margin-bottom:6px">${esc(m.day)}</div>
+          <div style="font-size:13px;font-weight:700;color:#0f172a;margin-bottom:6px">${esc(m.subject)}</div>
+          <div style="font-size:13px;color:#334155;line-height:1.8">${esc(m.body)}</div>
+        </div>`).join("");
+
+      return `<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" /></head>
+<body style="margin:0;padding:0;background:#eef2f7;font-family:'Segoe UI',Tahoma,Arial,sans-serif">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#eef2f7;padding:24px 12px">
+    <tr><td align="center">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;background:#ffffff;border-radius:14px;overflow:hidden;border:1px solid #dbe3ec">
+
+        <!-- شعار الموقع -->
+        <tr><td style="background:#0B1220;padding:0">
+          <img src="${VELOZA_EMAIL.logoUrl}" width="640" alt="Veloza Enterprise OS" style="display:block;width:100%;max-width:640px;height:auto;border:0" />
+        </td></tr>
+
+        <!-- شريط حالة الدفع -->
+        <tr><td style="background:#065f46;padding:12px 20px;color:#d1fae5;font-size:13px;font-weight:700;text-align:center">
+          ✅ تم تأكيد الدفع بنجاح &nbsp;|&nbsp; Payment Verified &nbsp;|&nbsp; طلب رقم ${esc(p.packageId)}
+        </td></tr>
+
+        <tr><td style="padding:26px 24px 8px">
+          <div style="font-size:20px;font-weight:800;color:#0f172a;margin-bottom:6px">مرحباً ${esc(p.customerName)} 👋</div>
+          <div style="font-size:14px;color:#475569;line-height:1.9">
+            شكراً لثقتك بمنصة <strong>Veloza Enterprise OS</strong>. هذه رسالتك الرسمية وتحتوي على ملخص طلبك
+            وكل تفاصيل حزمتك التنفيذية لمشروع <strong>${esc(p.projectName)}</strong>.
+          </div>
+        </td></tr>
+
+        <!-- ملخص الطلب -->
+        <tr><td style="padding:16px 24px">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e2e8f0;border-radius:12px;overflow:hidden">
+            <tr><td colspan="2" style="background:#0f172a;color:#e2e8f0;padding:10px 14px;font-size:12px;font-weight:700">ملخص الطلب / Order Summary</td></tr>
+            <tr><td style="padding:10px 14px;font-size:12px;color:#64748b;border-bottom:1px solid #eef2f7;width:45%">الباقة</td><td style="padding:10px 14px;font-size:13px;font-weight:700;color:#0f172a;border-bottom:1px solid #eef2f7">${esc(p.planName)}</td></tr>
+            <tr><td style="padding:10px 14px;font-size:12px;color:#64748b;border-bottom:1px solid #eef2f7">المبلغ المدفوع</td><td style="padding:10px 14px;font-size:13px;font-weight:700;color:#059669;border-bottom:1px solid #eef2f7">${money(p.amount)} USD</td></tr>
+            <tr><td style="padding:10px 14px;font-size:12px;color:#64748b;border-bottom:1px solid #eef2f7">رقم عملية PayPal</td><td style="padding:10px 14px;font-size:12px;font-family:Consolas,monospace;color:#0f172a;border-bottom:1px solid #eef2f7">${esc(p.paypalTxnId || "-")}</td></tr>
+            <tr><td style="padding:10px 14px;font-size:12px;color:#64748b;border-bottom:1px solid #eef2f7">مفتاح الترخيص</td><td style="padding:10px 14px;font-size:12px;font-family:Consolas,monospace;color:#0f172a;border-bottom:1px solid #eef2f7">${esc(p.licenseKey)}</td></tr>
+            <tr><td style="padding:10px 14px;font-size:12px;color:#64748b">التاريخ</td><td style="padding:10px 14px;font-size:12px;color:#0f172a">${esc(p.createdAt)}</td></tr>
+          </table>
+        </td></tr>
+
+        <!-- ما تم تسليمه -->
+        <tr><td style="padding:6px 24px 0">
+          <div style="font-size:15px;font-weight:800;color:#0f172a;margin:14px 0 8px">📦 الحزمة التنفيذية المُسلّمة</div>
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size:13px;color:#334155;line-height:2">
+            <tr><td>1️⃣ دراسة الجدوى المالية والنموذج الاقتصادي (PDF قابل للطباعة)</td></tr>
+            <tr><td>2️⃣ الحملات الإعلانية + سلسلة الرسائل البريدية البيعية</td></tr>
+            <tr><td>3️⃣ ملف الأتمتة الجاهز للاستيراد (n8n / Make.com — JSON)</td></tr>
+            <tr><td>4️⃣ كود صفحة الهبوط الكاملة (HTML5 + Tailwind CSS)</td></tr>
+            <tr><td>5️⃣ دليل الاستخدام المكوّن من 3 خطوات</td></tr>
+          </table>
+        </td></tr>
+
+        <!-- الأرقام المالية -->
+        <tr><td style="padding:14px 24px">
+          <div style="font-size:15px;font-weight:800;color:#0f172a;margin:6px 0 8px">📊 دراسة الجدوى الاقتصادية</div>
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e2e8f0;border-radius:12px;overflow:hidden">${rows}</table>
+          <div style="margin-top:10px;padding:12px 14px;background:#ecfeff;border:1px solid #a5f3fc;border-radius:10px;font-size:12.5px;color:#0e7490;line-height:1.9">
+            ${esc(p.feasibility.recommendationAr)}
+          </div>
+        </td></tr>
+
+        <!-- الإعلانات -->
+        <tr><td style="padding:8px 24px">
+          <div style="font-size:15px;font-weight:800;color:#0f172a;margin:6px 0 4px">📣 نصوص الإعلانات الجاهزة</div>
+          ${ads}
+          <div style="font-size:15px;font-weight:800;color:#0f172a;margin:14px 0 4px">✉️ سلسلة الرسائل البريدية</div>
+          ${mails}
+        </td></tr>
+
+        <!-- خطوات التنفيذ -->
+        <tr><td style="padding:10px 24px 4px">
+          <div style="font-size:15px;font-weight:800;color:#0f172a;margin:6px 0 8px">🧭 كيف تستخدم ملفاتك في 3 خطوات</div>
+          <div style="font-size:13px;color:#334155;line-height:2">
+            <div style="margin-bottom:8px"><strong>1) التقرير والإعلانات:</strong> افتح لوحة حزمتك على الموقع واضغط «تقرير PDF للطباعة» لحفظ الدراسة، وانسخ الإعلانات مباشرة إلى إنستغرام / سناب / تيك توك.</div>
+            <div style="margin-bottom:8px"><strong>2) الموقع:</strong> حمّل ملف <code style="background:#f1f5f9;padding:1px 5px;border-radius:4px">Website.html</code> واسحبه إلى <a href="https://app.netlify.com/drop" style="color:#0891b2">Netlify Drop</a> ليعمل موقعك مجاناً في 30 ثانية.</div>
+            <div><strong>3) الأتمتة:</strong> استورد ملف <code style="background:#f1f5f9;padding:1px 5px;border-radius:4px">n8n-Workflow.json</code> في <a href="https://n8n.io" style="color:#7c3aed">n8n.io</a> عبر «Import from File».</div>
+          </div>
+        </td></tr>
+
+        <!-- زر الدخول -->
+        <tr><td align="center" style="padding:18px 24px">
+          <a href="${VELOZA_EMAIL.siteUrl}#builder" style="display:inline-block;background:#0891b2;color:#ffffff;text-decoration:none;font-weight:800;font-size:14px;padding:13px 26px;border-radius:10px">افتح لوحة حزمتك وحمّل الملفات ←</a>
+        </td></tr>
+
+        <!-- الختم الإداري -->
+        <tr><td style="padding:6px 24px 24px">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:2px dashed #cbd5e1;padding-top:16px">
+            <tr>
+              <td width="110" valign="middle" align="center">
+                <img src="${VELOZA_EMAIL.stampUrl}" width="100" alt="Veloza Official Seal" style="display:block;border:0" />
+              </td>
+              <td valign="middle" style="padding-right:14px">
+                <div style="font-size:12.5px;font-weight:800;color:#0f172a;margin-bottom:4px">ختم إداري رسمي — Veloza Enterprise OS</div>
+                <div style="font-size:11.5px;color:#64748b;line-height:1.8">
+                  هذه الوثيقة صادرة إلكترونياً من منصة Veloza ومربوطة برقم الطلب <strong>${esc(p.packageId)}</strong> ومفتاح الترخيص أعلاه.<br/>
+                  Official digitally-issued document • Order ${esc(p.packageId)} • License ${esc(p.licenseKey)}
+                </div>
+              </td>
+            </tr>
+          </table>
+        </td></tr>
+
+        <!-- تذييل -->
+        <tr><td style="background:#0f172a;padding:18px 24px;text-align:center">
+          <div style="font-size:12px;color:#cbd5e1;line-height:1.9">
+            🛡️ دفعة محمية عبر PayPal &nbsp;•&nbsp; ضمان استرداد 14 يوماً<br/>
+            الدعم الرسمي: <a href="mailto:${VELOZA_EMAIL.ownerEmail}" style="color:#67e8f9;text-decoration:none">${VELOZA_EMAIL.ownerEmail}</a>
+          </div>
+          <div style="font-size:11px;color:#64748b;margin-top:8px">© 2026 Veloza Enterprise OS — All rights reserved.</div>
+        </td></tr>
+
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`;
+    }
+
+    function buildDeliveryText(p) {
+      const f = p.feasibility;
+      return [
+        `Veloza Enterprise OS — Order ${p.packageId}`,
+        `العميل: ${p.customerName} | المشروع: ${p.projectName}`,
+        `الباقة: ${p.planName} | المبلغ: ${money(p.amount)}`,
+        `رقم عملية PayPal: ${p.paypalTxnId || "-"}`,
+        `مفتاح الترخيص: ${p.licenseKey}`,
+        ``,
+        `— دراسة الجدوى —`,
+        `CAC: ${money(f.cac)} | LTV: ${money(f.ltv)} | LTV:CAC ${f.ltvCacRatio}x`,
+        `نقطة التعادل: ${f.breakEvenUnits} مبيعة/شهر | الإيراد الشهري: ${money(f.monthlyRevenue)}`,
+        `صافي الربح الشهري: ${money(f.netProfit)} | توقعات 12 شهر: ${money(f.annualProjectedRevenue)}`,
+        ``,
+        `— الإعلانات —`,
+        ...p.marketing.ads.map(a => `${a.platform}\n${a.headline}\n${a.body}`),
+        ``,
+        `— البريد البيعي —`,
+        ...p.marketing.emails.map(m => `${m.day}\n${m.subject}\n${m.body}`),
+        ``,
+        `لوحة حزمتك: ${VELOZA_EMAIL.siteUrl}#builder`,
+        `الدعم: ${VELOZA_EMAIL.ownerEmail}`
+      ].join("\n");
+    }
+
+    function toBase64(str) {
+      try { return btoa(unescape(encodeURIComponent(str))); } catch (e) { return ""; }
+    }
+
+    async function sendDeliveryEmail(p) {
+      if (!isEmailConfigured()) return { ok: false, reason: "not-configured" };
+
+      const html = buildDeliveryEmailHtml(p);
+      const text = buildDeliveryText(p);
+
+      const params = {
+        to_email: p.customerEmail,
+        to_name: p.customerName,
+        reply_to: VELOZA_EMAIL.ownerEmail,
+        from_name: "Veloza Enterprise OS",
+        subject: `✅ Veloza | حزمتك التنفيذية جاهزة — ${p.packageId}`,
+        order_id: p.packageId,
+        license_key: p.licenseKey,
+        plan_name: p.planName,
+        amount: money(p.amount),
+        txn_id: p.paypalTxnId || "",
+        project_name: p.projectName,
+        support_email: VELOZA_EMAIL.ownerEmail,
+        message_html: html,
+        content: html,
+        message_text: text,
+        attachments: JSON.stringify([
+          { name: `${p.packageId}-Website.html`, data: toBase64(p.landingHtml) },
+          { name: `${p.packageId}-n8n-Workflow.json`, data: toBase64(JSON.stringify(p.n8nWorkflow, null, 2)) },
+          { name: `${p.packageId}-Feasibility-Report.html`, data: toBase64(html) }
+        ])
+      };
+
+      try {
+        const res = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            service_id: VELOZA_EMAIL.serviceId,
+            template_id: VELOZA_EMAIL.templateId,
+            user_id: VELOZA_EMAIL.publicKey,
+            template_params: params
+          })
+        });
+        if (res.ok) return { ok: true };
+        const txt = await res.text().catch(() => "");
+        return { ok: false, reason: txt || ("HTTP " + res.status) };
+      } catch (err) {
+        return { ok: false, reason: String(err) };
       }
     }
 
@@ -1060,21 +1277,98 @@
         feasibility,
         marketing,
         n8nWorkflow,
-        landingHtml
+        landingHtml,
+        paymentUnlocked: false,
+        paypalTxnId: ""
       };
 
-      await fetch("/api/orders", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(currentGeneratedPackage)
-      }).catch(() => {});
-
-      // حفظ دائم أيضاً في المتصفح لضمان عمل السجل على الاستضافات السحابية (Vercel Serverless)
-      const localOrders = JSON.parse(localStorage.getItem("veloza_real_orders") || "[]");
-      localOrders.unshift(currentGeneratedPackage);
-      localStorage.setItem("veloza_real_orders", JSON.stringify(localOrders));
+      // إن كان العميل عائداً من PayPal (Auto Return) نقرأ رقم العملية تلقائياً
+      const urlParams = new URLSearchParams(window.location.search);
+      const returnedTxn = urlParams.get("tx") || urlParams.get("txn_id") || "";
+      if (returnedTxn) {
+        currentGeneratedPackage.paypalTxnId = returnedTxn;
+      }
 
       renderDeliverablesView();
+      document.getElementById("deliverables-output-area").scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    function showEmailStatus(kind, msg) {
+      const box = document.getElementById("email-status");
+      if (!box) return;
+      const styles = {
+        ok: "bg-emerald-500/10 border-emerald-500/40 text-emerald-300",
+        warn: "bg-amber-500/10 border-amber-500/40 text-amber-200",
+        err: "bg-rose-500/10 border-rose-500/40 text-rose-200"
+      };
+      box.className = "rounded-xl border p-3 text-[11px] leading-relaxed " + (styles[kind] || styles.warn);
+      box.innerHTML = msg;
+      box.classList.remove("hidden");
+    }
+
+    async function unlockDelivery() {
+      const p = currentGeneratedPackage;
+      if (!p) return;
+
+      const txnInput = document.getElementById("inp-txn");
+      const txn = (txnInput ? txnInput.value.trim() : "") || p.paypalTxnId || "";
+      const emailInput = document.getElementById("inp-email");
+      if (emailInput && emailInput.value.trim()) p.customerEmail = emailInput.value.trim();
+
+      const valid = /^[A-Za-z0-9\-_]{6,40}$/.test(txn);
+      if (!valid) {
+        showEmailStatus("warn", siteLang === "en"
+          ? "⚠️ Please enter a valid PayPal Transaction ID (found in your PayPal receipt email or in the PayPal confirmation page)."
+          : "⚠️ أدخل رقم عملية PayPal الصحيح (تجده في صفحة تأكيد الدفع أو في بريد إيصال PayPal).");
+        return;
+      }
+
+      p.paypalTxnId = txn;
+      p.paymentUnlocked = true;
+
+      // حفظ سجل الطلب محلياً
+      try {
+        const localOrders = JSON.parse(localStorage.getItem("veloza_real_orders") || "[]");
+        localOrders.unshift(p);
+        localStorage.setItem("veloza_real_orders", JSON.stringify(localOrders));
+      } catch (e) {}
+
+      // إرسال نسخة للخادم إن توفّر (Next.js)
+      fetch("/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(p)
+      }).catch(() => {});
+
+      const btn = document.getElementById("unlock-btn");
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = siteLang === "en" ? "⏳ Sending your package..." : "⏳ جاري إرسال حزمتك إلى بريدك...";
+      }
+
+      // 1) إرسال البريد الاحترافي
+      const emailRes = await sendDeliveryEmail(p);
+
+      // 2) عرض المخرجات فوراً
+      const area = document.getElementById("deliverables-output-area");
+      const scrollTarget = area ? area.scrollTop : 0;
+      renderDeliverablesView();
+      if (area) area.scrollIntoView({ behavior: "smooth", block: "start" });
+
+      // 3) حالة البريد
+      if (emailRes.ok) {
+        showEmailStatus("ok", siteLang === "en"
+          ? `✅ Your complete package has been emailed to <strong>${esc(p.customerEmail)}</strong> (check Spam/Promotions too).`
+          : `✅ تم إرسال حزمتك الكاملة إلى بريدك <strong>${esc(p.customerEmail)}</strong> — تفقّد أيضاً مجلد «الرسائل غير المرغوبة / العروض».`);
+      } else if (emailRes.reason === "not-configured") {
+        showEmailStatus("warn", siteLang === "en"
+          ? `⚠️ Automatic email is being activated. Your files are unlocked below. You can also <a class="underline font-bold" href="mailto:${esc(p.customerEmail)}?subject=${encodeURIComponent("Veloza | " + p.packageId)}&body=${encodeURIComponent(buildDeliveryText(p))}">send them to your inbox</a>.`
+          : `⚠️ خدمة البريد التلقائي قيد التفعيل. ملفاتك مفتوحة بالكامل أدناه، ويمكنك <a class="underline font-bold" href="mailto:${esc(p.customerEmail)}?subject=${encodeURIComponent("Veloza | " + p.packageId)}&body=${encodeURIComponent(buildDeliveryText(p))}">إرسال نسخة إلى بريدك الآن</a>.`);
+      } else {
+        showEmailStatus("err", siteLang === "en"
+          ? `⚠️ The email service returned an error, but your files are unlocked below. Please contact ${VELOZA_EMAIL.ownerEmail}.`
+          : `⚠️ تعذّر إرسال البريد الآن، لكن ملفاتك مفتوحة بالكامل أدناه. تواصل معنا على ${VELOZA_EMAIL.ownerEmail}.`);
+      }
     }
 
     function switchDeliverableTab(tab) {
@@ -1089,20 +1383,81 @@
         area.innerHTML = siteLang === "en" ? `
           <div class="space-y-3 max-w-md">
             <div class="text-4xl">📦</div>
-            <h3 class="text-base sm:text-lg font-bold text-white">Enter your project details on the left and click "Generate & Issue Complete Executive Suite"</h3>
-            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">You will immediately receive: <strong>1) Printable PDF Feasibility Report</strong>, <strong>2) Live Website Preview</strong>, and <strong>3) A 3-Step Beginner Usage Guide</strong>!</p>
+            <h3 class="text-base sm:text-lg font-bold text-white">Enter your project details on the left, pay securely, and receive everything instantly</h3>
+            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">You will instantly receive on screen <strong>and by email</strong>: <strong>1) Printable PDF Feasibility Report</strong>, <strong>2) Ad Campaigns</strong>, <strong>3) n8n Automation JSON</strong>, <strong>4) Full Website Code</strong> + a 3-step guide.</p>
           </div>
         ` : `
           <div class="space-y-3 max-w-md">
             <div class="text-4xl">📦</div>
-            <h3 class="text-base sm:text-lg font-bold text-white">أدخل بيانات مشروعك في النموذج المقابل واضغط على "توليد وإصدار الحزمة التنفيذية"</h3>
-            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">ستحصل فوراً على: <strong>1) تقرير PDF منسق للطباعة</strong>، <strong>2) معاينة حية لصفحة موقعك</strong>، و<strong>3) دليل مبسط من 3 خطوات لكيفية استخدام كل ملف</strong> بدون خبرة تقنية!</p>
+            <h3 class="text-base sm:text-lg font-bold text-white">أدخل بيانات مشروعك، أكمل الدفع الآمن، واستلم كل شيء فوراً</h3>
+            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">ستستلم فوراً على الشاشة <strong>وعلى بريدك الإلكتروني</strong>: <strong>1) تقرير جدوى PDF للطباعة</strong>، <strong>2) الحملات الإعلانية</strong>، <strong>3) ملف أتمتة n8n</strong>، <strong>4) كود موقعك الكامل</strong> + دليل الاستخدام.</p>
           </div>
         `;
         return;
       }
 
       const p = currentGeneratedPackage;
+
+      // ===== مرحلة التحقق من الدفع قبل التسليم =====
+      if (!p.paymentUnlocked) {
+        const payUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=pipohost%40gmail.com&item_name=${encodeURIComponent("Veloza - " + p.planName)}&item_number=${p.planId}&amount=${p.amount}.00&currency_code=USD&no_shipping=1&return=${encodeURIComponent(VELOZA_EMAIL.siteUrl + "#builder")}`;
+        area.className = `lg:col-span-7 rounded-2xl bg-slate-900/80 border border-amber-500/40 p-6 space-y-5 ${siteLang === 'en' ? 'text-left' : 'text-right'}`;
+        area.innerHTML = `
+          <div class="flex items-start justify-between gap-3 border-b border-slate-800 pb-4">
+            <div>
+              <div class="text-xs font-mono text-cyan-400">${p.packageId}</div>
+              <h3 class="text-base sm:text-lg font-black text-white mt-0.5">${siteLang === 'en' ? 'Step 2: Complete Your Secure Payment' : 'الخطوة 2: أكمل الدفع الآمن'}</h3>
+              <p class="text-[11px] text-slate-400 mt-1">${siteLang === 'en' ? 'Your package is generated and reserved under this order number.' : 'حزمتك جاهزة ومحفوظة تحت رقم الطلب هذا.'}</p>
+            </div>
+            <span class="px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/40 text-amber-300 text-[10px] font-black whitespace-nowrap">${siteLang === 'en' ? 'AWAITING PAYMENT' : 'بانتظار الدفع'}</span>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center">
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800">
+              <div class="text-[10px] text-slate-400">${siteLang === 'en' ? 'Plan' : 'الباقة'}</div>
+              <div class="text-xs font-black text-white mt-1">${esc(p.planName)}</div>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800">
+              <div class="text-[10px] text-slate-400">${siteLang === 'en' ? 'Amount' : 'المبلغ'}</div>
+              <div class="text-lg font-black text-emerald-400 font-mono" dir="ltr">$${Number(p.amount).toFixed(2)}</div>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800">
+              <div class="text-[10px] text-slate-400">${siteLang === 'en' ? 'Project' : 'المشروع'}</div>
+              <div class="text-xs font-black text-white mt-1 truncate">${esc(p.projectName)}</div>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800">
+              <div class="text-[10px] text-slate-400">${siteLang === 'en' ? 'Email' : 'البريد'}</div>
+              <div class="text-[10px] font-bold text-cyan-300 mt-1 truncate" dir="ltr">${esc(p.customerEmail)}</div>
+            </div>
+          </div>
+
+          <a id="unlock-paypal-link" href="${payUrl}" target="_blank" rel="noopener noreferrer" class="w-full py-4 px-4 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-black text-sm shadow-xl flex items-center justify-center gap-2 transition">
+            💳 ${siteLang === 'en' ? `Pay $${p.amount}.00 Securely via PayPal` : `ادفع $${p.amount}.00 بأمان عبر PayPal الآن`}
+          </a>
+
+          <div class="flex items-center gap-3">
+            <div class="flex-1 h-px bg-slate-800"></div>
+            <span class="text-[10px] text-slate-500 font-bold">${siteLang === 'en' ? 'AFTER PAYMENT' : 'بعد إتمام الدفع'}</span>
+            <div class="flex-1 h-px bg-slate-800"></div>
+          </div>
+
+          <div class="space-y-2.5">
+            <label class="block text-[11px] font-bold text-slate-300">${siteLang === 'en' ? 'PayPal Transaction ID (from your PayPal receipt)' : 'رقم عملية الدفع PayPal (من إيصال PayPal)'}</label>
+            <input id="inp-txn" type="text" dir="ltr" value="${esc(p.paypalTxnId || '')}" placeholder="e.g. 8XK12345ABCD6789E" class="w-full rounded-xl bg-slate-950 border border-amber-500/40 px-3.5 py-3 text-white font-mono text-xs" />
+            <button id="unlock-btn" onclick="unlockDelivery()" class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-black text-sm shadow-lg transition">
+              ✅ ${siteLang === 'en' ? 'Confirm Payment & Deliver to My Email' : 'تأكيد الدفع — أرسل حزمتي إلى بريدي الآن'}
+            </button>
+            <div id="email-status" class="hidden"></div>
+            <p class="text-[10px] text-slate-500 leading-relaxed">
+              ${siteLang === 'en'
+                ? 'Your files unlock instantly on this screen and a full branded email (logo + official seal + all details) is sent to your inbox. Transaction ID helps us verify and protect your order.'
+                : 'تُفتح ملفاتك فوراً على هذه الشاشة، وتُرسل رسالة بريد احترافية كاملة (بشعار Veloza + الختم الإداري + كل التفاصيل) إلى بريدك. رقم العملية يساعدنا على التحقق وحماية طلبك.'}
+            </p>
+          </div>
+        `;
+        return;
+      }
+
       area.className = `lg:col-span-7 rounded-2xl bg-slate-900/80 border border-cyan-500/40 p-6 space-y-5 ${siteLang === 'en' ? 'text-left' : 'text-right'}`;
 
       let tabContentHtml = "";
@@ -1197,6 +1552,12 @@
           </div>
         </div>
 
+        <div class="flex flex-wrap items-center gap-2 rounded-xl bg-emerald-500/10 border border-emerald-500/30 px-3 py-2 text-[10px] font-bold text-emerald-300">
+          ✅ ${siteLang === 'en' ? `Verified payment • TXN ${esc(p.paypalTxnId || '-')}` : `دفعة مُتحقَّق منها • رقم العملية ${esc(p.paypalTxnId || '-')}`}
+        </div>
+
+        <div id="email-status" class="hidden"></div>
+
         <div class="flex flex-wrap gap-2 border-b border-slate-800 pb-3 text-xs font-bold">
           <button onclick="switchDeliverableTab('guide')" class="px-3.5 py-2 rounded-xl ${activeDeliverableTab === 'guide' ? 'bg-amber-400 text-slate-950' : 'bg-slate-950 text-amber-300 border border-amber-500/30'}">${siteLang === 'en' ? '🧭 3-Step Usage Guide' : '🧭 كيف تستخدم ملفاتك (3 خطوات)'}</button>
           <button onclick="switchDeliverableTab('feasibility')" class="px-3.5 py-2 rounded-xl ${activeDeliverableTab === 'feasibility' ? 'bg-cyan-500 text-slate-950' : 'bg-slate-950 text-slate-300'}">${siteLang === 'en' ? '1. Feasibility Study' : '1. دراسة الجدوى'}</button>
@@ -1269,36 +1630,7 @@
       URL.revokeObjectURL(url);
     }
 
-    async function loadRealLedgerFromServer() {
-      let transactions = [];
-      try {
-        const res = await fetch("/api/ledger", { cache: "no-store" });
-        const data = await res.json();
-        if (data && Array.isArray(data.transactions) && data.transactions.length > 0) {
-          transactions = data.transactions;
-        }
-      } catch (e) {}
-
-      if (transactions.length === 0) {
-        transactions = JSON.parse(localStorage.getItem("veloza_real_orders") || "[]");
-      }
-
-      const totalRevenue = transactions.reduce((sum, tx) => sum + Number(tx.amount || 0), 0);
-
-      document.getElementById("real-revenue-amount").innerText = "$" + Number(totalRevenue).toLocaleString("en-US", { minimumFractionDigits: 2 });
-      document.getElementById("real-orders-count").innerText = transactions.length;
-      document.getElementById("ledger-status-badge").innerText = `${transactions.length} Verified Orders`;
-      const listEl = document.getElementById("real-transactions-list");
-      listEl.innerHTML = (transactions.length === 0)
-        ? `<div class="p-4 text-center text-xs text-slate-400">Clean Ledger ($0.00)</div>`
-        : transactions.map(tx => `<div class="p-3 rounded-xl bg-slate-900 border border-emerald-500/30 flex items-center justify-between text-xs"><div><strong class="text-emerald-400 font-mono">+$${tx.amount}.00</strong> • ${tx.projectName} (${tx.customerName})</div><span class="text-slate-400 font-mono">${tx.packageId}</span></div>`).join("");
-    }
-
-    async function resetRealLedgerOnServer() {
-      localStorage.removeItem("veloza_real_orders");
-      await fetch("/api/ledger/reset", { method: "POST" }).catch(() => {});
-      await loadRealLedgerFromServer();
-    }
+    // لوحة تحكم المالك أُزيلت من الواجهة العامة نهائياً
 
     function renderInitialBotWelcome() {
       const msgs = document.getElementById("chat-messages");
